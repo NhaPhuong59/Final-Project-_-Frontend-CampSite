@@ -1,13 +1,14 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import CampsiteList from "../../components/CampsiteList";
+import "./styles.scss"
 
 function HomePage() {
   return (
     <React.Fragment>
-      <div>HomePage</div>
-      <Link to="/detail">Go to detail page</Link>
+      <CampsiteList/>
     </React.Fragment>
   );
 }
 
 export default HomePage;
+

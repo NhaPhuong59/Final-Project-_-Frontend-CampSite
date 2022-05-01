@@ -1,0 +1,39 @@
+.detailpage-container {
+  margin: 0 300px;
+  .container {
+    display: flex;
+    .side-bar {
+      width: 350px;
+    }
+    .detail-info {
+      .title {
+        font-size: 2rem;
+        font-weight: 600;
+      }
+      padding: 1%;
+      .images-container {
+        margin: 20px auto 0;
+        width: 680px;
+        height: 550px;
+        img {
+          width: 680px;
+          height: 510px;
+          object-fit: cover;
+          border-radius: 3%;
+        }
+      }
+      .description {
+        padding: 2%;
+      }
+      .address-container {
+        display: flex;
+        align-items: center;
+        font-style: italic;
+        img {
+          height: 25px;
+        }
+      }
+    }
+  }
+  
+}
