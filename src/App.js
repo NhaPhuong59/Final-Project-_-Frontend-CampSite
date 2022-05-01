@@ -9,8 +9,8 @@ function App() {
     <React.Fragment>
       <Routes>
         <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/detail" element={<DetailPage />} />
+          <Route path="/" element={<HomePage />} />
+          <Route path="/:id" element={<DetailPage />} />
         </Route>
       </Routes>
     </React.Fragment>
