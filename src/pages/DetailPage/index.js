@@ -10,8 +10,6 @@ import Carousel from "react-material-ui-carousel";
 
 function DetailPage() {
   const params = useParams();
-  console.log("params", params);
-  console.log(campsiteList);
   const detail = campsiteList.find(
     (campsite) => campsite.objectId.toString() === params.id
   );
