@@ -79,7 +79,7 @@ function CampsiteList() {
                 }
                 actionPosition="left"
               />
-              <Link to={`/${_id}`}>
+              <Link to={`/detailCamp/${_id}`}>
                 <ImageListItemBar
                   className="content-container"
                   sx={{
