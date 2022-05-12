@@ -1,6 +1,6 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import HeaderUser from '../MainHeader'
+import MainHeader from '../MainHeader'
 import MainFooter from '../MainFooter'
 import { Box, Stack } from '@mui/material'
 
@@ -8,7 +8,7 @@ function MainLayout() {
   return (
     <React.Fragment>
     <Stack sx={{ minHeight: "100vh" }}>
-        <HeaderUser/>
+        <MainHeader/>
         <Outlet/>
       <Box sx={{ flexGrow: 1 }} />
         <MainFooter/>

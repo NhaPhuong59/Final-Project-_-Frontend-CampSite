@@ -12,10 +12,9 @@ import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link as RouterLink, Link, useNavigate } from "react-router-dom";
-import Logo from "../../images/logo.jpg";
+import Logo from "../../images/logoNok3.jpg";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
-import CoverImg from "../../images/lance-anderson-JKmjElTIG5I-unsplash.jpg"
 
 const PartnerHeader = () => {
   const navigate = useNavigate();

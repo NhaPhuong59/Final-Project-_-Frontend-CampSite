@@ -7,16 +7,17 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import { Link as RouterLink, Link, useNavigate } from "react-router-dom";
-import Logo from "../../images/logo.jpg";
+import Logo from "../../images/logoNok3.jpg";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
+import SearchIcon from '@material-ui/icons/Search';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import "./styles.scss"
 
-const PartnerHeader = () => {
+const MainHeader = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -38,20 +39,6 @@ const PartnerHeader = () => {
     setAnchorElUser(null);
   };
 
-  // const handleNavigate = (event) => {
-  //   handleCloseUserMenu();
-  //   const text = event.target.innerText;
-  //   console.log(event.target.innerText);
-  //   console.log(text === "USER");
-  //   if (text === "USER") {
-  //     navigate("user");
-  //   } else if (text === "CAMP") {
-  //     navigate("camp");
-  //   } else if (text === "CREATE CAMP") {
-  //     navigate("create");
-  //   }
-  // };
-
   const handleLogout = async () => {
     try {
       handleCloseUserMenu();
@@ -69,9 +56,9 @@ const PartnerHeader = () => {
     </MenuItem>
   );
   return (
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor:"#FFF", boxShadow:"none"}} className="app_bar">
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
+        <Toolbar disableGutters >
           <Typography
             variant="h6"
             noWrap
@@ -88,7 +75,7 @@ const PartnerHeader = () => {
             }}
           >
             <Box
-              height={90}
+              height={100}
               sx={{
                 display: "flex",
                 justifyContent: "center",
@@ -96,51 +83,10 @@ const PartnerHeader = () => {
               }}
             >
               <Link to="/">
-                <img src={Logo} alt="logo" height={100} />
+                <img src={Logo} alt="logo" height={80} className="logo"/>
               </Link>
             </Box>
           </Typography>
-
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              <MenuItem to="user" component={RouterLink}>
-                User
-              </MenuItem>
-              <MenuItem to="camp" component={RouterLink}>
-                Camp
-              </MenuItem>
-              <MenuItem to="create" component={RouterLink}>
-                Create Camp
-              </MenuItem>
-            </Menu>
-          </Box> */}
           <Typography
             variant="h5"
             noWrap
@@ -170,31 +116,19 @@ const PartnerHeader = () => {
               </Link>
             </Box>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {/* <Button
-              onClick={handleNavigate}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              User
-            </Button>
-            <Button
-              onClick={handleNavigate}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Camp
-            </Button>
-            <Button
-              onClick={handleNavigate}
-              sx={{ my: 2, color: "white", display: "block" }}
-            >
-              Create Camp
-            </Button> */}
+          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: {xs:"none", md:"center"} }}>
+          <div className="header_center">
+                <input type="text" placeholder="Search"/>
+                <IconButton style={{background:"#e55039", color:'white'}}>
+                    <SearchIcon />
+                </IconButton>
+            </div>
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+              <IconButton onClick={handleOpenUserMenu} sx={{p: 0, border: "1px solid lightGrey", width:"1.5em", height:"1.5em" }} >
+                <AccountCircleIcon fontSize="3"/>
               </IconButton>
             </Tooltip>
             <Menu
@@ -239,4 +173,4 @@ const PartnerHeader = () => {
     </AppBar>
   );
 };
-export default PartnerHeader;
+export default MainHeader;

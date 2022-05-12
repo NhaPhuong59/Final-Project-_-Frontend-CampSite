@@ -1,0 +1,32 @@
+// .sidebar-listcamp {
+//   display: flex;
+//   .sidebar {
+//     margin: 2rem 1rem 0;
+//     width: 100%;
+//     flex-shrink: 3;
+//   }
+//   .listCamp {
+//     margin: 2rem 0.5rem 0;
+//     width: 100%;
+//     flex-shrink: 1;
+//   }
+// }
+
+.home {
+  .home__section__place {
+    display: flex;
+    padding: 5px 25px;
+    justify-content: center;
+  }
+  .title-section {
+    margin: 20px 20px 20px 43px;
+    font-size: 30px;
+    color: #2f3542
+  }
+}
+
+@media screen and (max-width: 400px) {
+    .home__section__place {
+        padding-left: 5px;
+    }
+}
