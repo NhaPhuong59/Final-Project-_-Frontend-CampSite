@@ -1,0 +1,50 @@
+.app_bar {
+    border-bottom: 1px solid lightgray;
+    
+}
+.header_center{
+    display: flex;
+    flex: 1;
+    align-items: center;
+    max-width: fit-content;
+    padding: 10px;
+    height: 30px;
+    border: 1px solid lightgray;
+    border-radius: 999px;
+    margin-right: 10%;
+    input {
+        border: none;
+        /* width: 250px; */
+        padding: 10px;
+        outline: none;
+    }
+}
+.header_right{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 20vw;
+    margin-right: 50px;
+
+
+}
+
+.header_right > p{
+    font-weight: 500;
+}
+
+.header_right_2{
+    display: flex;
+    align-items: center;
+   /* justify-content: space-between;*/
+    border: 1px solid lightgray;
+    border-radius: 999px;
+    padding: 2px 7px 2px 7px;
+
+}
+
+@media screen and (max-width: 770px) {
+    .logo {
+        height: 70px;
+    }
+}

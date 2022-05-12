@@ -11,8 +11,10 @@ import PartnerAccount from "../pages/PartnerAccount";
 // import PartnerLoginPage from "../pages/PartnerLoginPage";
 // import PartnerRegisterPage from "../pages/PartnerRegisterPage";
 import UserAccount from "../pages/UserAccount";
+import UserChangePassword from "../pages/UserChangePassword";
 import UserLoginPage from "../pages/UserLoginPage";
 import UserRegisterPage from "../pages/UserRegisterPage";
+import UserResetPassword from "../pages/UserResetPassword";
 import AuthRequire from "./AuthRequire";
 
 function Router() {
@@ -26,8 +28,8 @@ function Router() {
       <Route element={<BlankLayout />}>
         <Route path="/userLogin" element={<UserLoginPage />} />
         <Route path="/userRegister" element={<UserRegisterPage />} />
-        {/* <Route path="/partnerLogin" element={<PartnerLoginPage />} />
-        <Route path="/partnerRegister" element={<PartnerRegisterPage />} /> */}
+        <Route path="/userReset" element={<UserResetPassword />} />
+        <Route path="/userReset/:token" element={<UserChangePassword />} />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
       <Route path="/partner/:id" element={<AuthRequire><PartnerLayout /></AuthRequire>}>
