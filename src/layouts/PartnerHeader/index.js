@@ -5,13 +5,11 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link as RouterLink, Link, useNavigate } from "react-router-dom";
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../images/logoNok3.jpg";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
@@ -19,38 +17,38 @@ import { Divider } from "@mui/material";
 const PartnerHeader = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event) => {
     console.log(event);
     setAnchorElUser(event.currentTarget);
   };
 
   const handleCloseNavMenu = (event) => {
-    setAnchorElNav(null);
+    // setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
 
-  const handleNavigate = (event) => {
-    handleCloseUserMenu();
-    const text = event.target.innerText;
-    console.log(event.target.innerText);
-    console.log(text === "USER");
-    if (text === "USER") {
-      navigate("user");
-    } else if (text === "CAMP") {
-      navigate("camp");
-    } else if (text === "CREATE CAMP") {
-      navigate("create");
-    }
-  };
+  // const handleNavigate = (event) => {
+  //   handleCloseUserMenu();
+  //   const text = event.target.innerText;
+  //   console.log(event.target.innerText);
+  //   console.log(text === "USER");
+  //   if (text === "USER") {
+  //     navigate("user");
+  //   } else if (text === "CAMP") {
+  //     navigate("camp");
+  //   } else if (text === "CREATE CAMP") {
+  //     navigate("create");
+  //   }
+  // };
 
   const handleLogout = async () => {
     try {
@@ -70,14 +68,12 @@ const PartnerHeader = () => {
   );
   return (
     <React.Fragment>
-    <AppBar position="static">
+    <AppBar position="static" sx={{backgroundColor:"#FFF", boxShadow:"none"}} className="app_bar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
-            component="a"
-            href="/"
             sx={{
               mr: 2,
               display: { xs: "none", md: "flex" },
@@ -96,57 +92,16 @@ const PartnerHeader = () => {
                 alignItems: "center",
               }}
             >
-              <Link to="/">
-                <img src={Logo} alt="logo" height={100} />
-              </Link>
+                <img src={Logo} alt="logo" height={80} className="logo"/>
             </Box>
           </Typography>
 
-          <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            >
-              <MenuIcon />
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorElNav}
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "left",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "left",
-              }}
-              open={Boolean(anchorElNav)}
-              onClose={handleCloseNavMenu}
-              sx={{
-                display: { xs: "block", md: "none" },
-              }}
-            >
-              <MenuItem to="user" component={RouterLink}>
-                User
-              </MenuItem>
-              <MenuItem to="camp" component={RouterLink}>
-                Camp
-              </MenuItem>
-              <MenuItem to="create" component={RouterLink}>
-                Create Camp
-              </MenuItem>
-            </Menu>
-          </Box>
+          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
+           
+          </Box> */}
           <Typography
             variant="h5"
             noWrap
-            component="a"
-            href=""
             sx={{
               mr: 2,
               display: { xs: "flex", md: "none" },
@@ -166,36 +121,17 @@ const PartnerHeader = () => {
                 alignItems: "center",
               }}
             >
-              <Link to="/">
-                <img src={Logo} alt="logo" height={100} />
-              </Link>
+                <img src={Logo} alt="logo" height={80} />
             </Box>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Button
-              onClick={handleNavigate}
-              sx={{ my: 2, color: "orange", display: "block" }}
-            >
-              User
-            </Button>
-            <Button
-              onClick={handleNavigate}
-              sx={{ my: 2, color: "orange", display: "block" }}
-            >
-              Camp
-            </Button>
-            <Button
-              onClick={handleNavigate}
-              sx={{ my: 2, color: "orange", display: "block" }}
-            >
-              Create Camp
-            </Button>
+           
           </Box>
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+            <IconButton onClick={handleOpenUserMenu} sx={{p: 0, border: "1px solid lightGrey", width:"1.5em", height:"1.5em" }} >
+                <AccountCircleIcon fontSize="3"/>
               </IconButton>
             </Tooltip>
             <Menu

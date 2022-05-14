@@ -1,9 +1,13 @@
 import { KeyboardReturnSharp } from "@material-ui/icons";
-import { Box, Container, Grid, Stack } from "@mui/material";
-import React from "react";
-import Banner from "../../components/Banner";
-import CampsiteList from "../../components/CampsiteList";
-import Country from "../../components/Country";
+import { Box, Container, duration, Grid, Stack } from "@mui/material";
+import React, { useRef, useState, useEffect } from "react";
+import Banner from "../../../components/Banner";
+import CampsiteList from "../../../features/camp/CampsiteList";
+import Country from "../../../components/Country";
+import { useSearchParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { getListCamp } from "../../../features/camp/campSlice";
+import useEqual from "../../../hooks/useEqual"
 import "./styles.scss";
 
 const data = [
@@ -56,13 +60,42 @@ const data = [
     totalPlace: 100,
   },
 ];
-
+const scrollToRef = (ref) =>
+  window.scrollTo({ behavior: "smooth" }, ref.current.offsetTop);
 function HomePage() {
+  const { camps } = useSelector((state) => state.camp);
+  const dispatch = useDispatch();
+
+  const [query, setQuery] = useSearchParams({
+    startDate: "",
+    endDate: "",
+    camp: "",
+    page: 1,
+    limit: 10,
+  });
+  const queryParams = useEqual({
+    startDate: query.get('startDate'),
+    endDate: query.get('endDate'),
+    camp: query.get('camp'),
+    page: query.get('page'),
+    limit: query.get('limit'),
+  })
+
+  const myRef = useRef(null);
+  const executeScroll = () => scrollToRef(myRef);
+  // myRef.current.scrollIntoView()
+
+  useEffect(() => {
+    dispatch(getListCamp({ ...queryParams}));
+  }, [dispatch, queryParams]);
+
+  const handleSearch = () => {};
+  console.log('HomePage', 'queryParams', queryParams);
   return (
     <div className="home">
       <Container maxWidth="xl">
-        <Banner />
-        <h2 className='title-section place'>Explore world</h2>
+        <Banner setQuery={setQuery} queryParams={queryParams} handleSearch={handleSearch} />
+        <h2 className="title-section place">Explore world</h2>
 
         <Grid container className="home__section__place" spacing={1}>
           {data.map((item) => (
@@ -75,8 +108,8 @@ function HomePage() {
             </Grid>
           ))}
         </Grid>
-        <Box className="listCamp">
-          <CampsiteList />
+        <Box className="listCamp" ref={myRef}>
+          <CampsiteList list={camps} />
         </Box>
       </Container>
     </div>

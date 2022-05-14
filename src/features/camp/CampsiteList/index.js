@@ -8,30 +8,18 @@ import IconButton from "@mui/material/IconButton";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Link } from "react-router-dom";
 import "./styles.scss";
-import apiService from "../../utils/apiService";
 
 
-function CampsiteList() {
-  const [camps, setCamps] = useState([]);
- useEffect(() => {
-   const getCamps = async()=>{
-     try {
-       const response = await apiService.get("/camps")
-       setCamps(response.data.camplist)
-     } catch (error) {
-       console.log(error)
-     }
-   }
-   getCamps();
- }, []);
+function CampsiteList({list}) {
+
   return (
     
-    <div className="campsite-list-container">
+    <div className="campsite-list-container" >
       {/* <ImageListItem key="Subheader" cols={2}> */}
         {/* <ListSubheader component="div">CAMPS LIST</ListSubheader> */}
       {/* </ImageListItem> */}
       <Grid container spacing={3}>
-        {camps.map(({ title, description, images, _id }) => (
+        {list.map(({ title, description, images, _id }) => (
           <Grid item xs={12} md={6} lg={4} key={_id}>
             <ImageListItem>
               <img
@@ -40,7 +28,7 @@ function CampsiteList() {
                 alt={title}
                 loading="lazy"
               />
-              {console.log(images)}
+              {/* {console.log(images)} */}
               <ImageListItemBar
                 sx={{
                   background:

@@ -5,18 +5,28 @@ import { Breadcrumbs, Rating, Typography } from "@mui/material";
 import "./styles.scss";
 import { Link } from "react-router-dom";
 // import { campsiteList } from "../../components/CampsiteList";
-import MapIcon from "../../images/map-icon.png";
+import MapIcon from "../../../images/map-icon.png";
 import Carousel from "react-material-ui-carousel";
-import apiService from "../../utils/apiService";
+import apiService from "../../../utils/apiService";
 
-function DetailPage() {
+function DetailCampPage() {
   const params = useParams();
-  const [campDetail, setCampDetail] = useState({});
-
+  const [campDetail, setCampDetail] = useState({
+    title:"",
+    images: [],
+    address: {
+      addressUrl:"",
+      addressText: ""
+    },
+    description: "",
+    rating: ""
+  });
+console.log("Hello")
   useEffect( () => {
+    console.log("Hi")
     const getCamp = async ()=>{
     try {
-      const res = await apiService(`/camps/${params.id}`)
+      const res = await apiService.get(`/camps/camp/${params.id}`)
       setCampDetail(res.data.camp)
       console.log(res.data.camp)
     } catch (error) {
@@ -81,4 +91,4 @@ function DetailPage() {
   );
 }
 
-export default DetailPage;
+export default DetailCampPage;

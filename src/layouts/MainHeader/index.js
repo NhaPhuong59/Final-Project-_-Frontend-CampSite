@@ -5,35 +5,35 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link as RouterLink, Link, useNavigate } from "react-router-dom";
+import {  Link, useNavigate } from "react-router-dom";
 import Logo from "../../images/logoNok3.jpg";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
 import SearchIcon from '@material-ui/icons/Search';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
 import "./styles.scss"
 
 const MainHeader = () => {
   const navigate = useNavigate();
-  const { user, logout } = useAuth();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { user, logout, isAuthenticated} = useAuth();
+  // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
+  // const handleOpenNavMenu = (event) => {
+  //   setAnchorElNav(event.currentTarget);
+  // };
   const handleOpenUserMenu = (event) => {
     console.log(event);
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = (event) => {
-    setAnchorElNav(null);
-  };
+  // const handleCloseNavMenu = (event) => {
+  //   setAnchorElNav(null);
+  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -43,7 +43,7 @@ const MainHeader = () => {
     try {
       handleCloseUserMenu();
       await logout(() => {
-        navigate("/userLogin");
+        navigate("/");
       });
     } catch (error) {
       console.error(error);
@@ -112,7 +112,7 @@ const MainHeader = () => {
               }}
             >
               <Link to="/">
-                <img src={Logo} alt="logo" height={100} />
+                <img src={Logo} alt="logo" height={80} />
               </Link>
             </Box>
           </Typography>
@@ -125,6 +125,21 @@ const MainHeader = () => {
             </div>
           </Box>
 
+          {(!isAuthenticated)?(
+            <Box sx={{ flexGrow: 0,display:"flex", alignItems:"center" }} >
+            <Typography href="/userLogin" component="a" sx={{
+              fontFamily: "monospace",
+              fontWeight: 700,
+              color:"#e55039",
+              letterSpacing: ".1rem",
+              textDecoration: "none",
+            }}>
+               Login
+              </Typography>
+              <IconButton><LoginIcon/></IconButton>
+              
+          </Box>
+          ):(
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <IconButton onClick={handleOpenUserMenu} sx={{p: 0, border: "1px solid lightGrey", width:"1.5em", height:"1.5em" }} >
@@ -162,12 +177,16 @@ const MainHeader = () => {
 
               <Divider sx={{ borderStyle: "dashed" }} />
 
-              <MenuItem onClick={handleCloseNavMenu}>
+              <MenuItem >
                 <Typography textAlign="center">Account Settings</Typography>
               </MenuItem>
               {renderLogout}
             </Menu>
           </Box>
+          )}
+            
+          
+         
         </Toolbar>
       </Container>
     </AppBar>

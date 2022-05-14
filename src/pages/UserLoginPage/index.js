@@ -81,7 +81,7 @@ function UserLoginPage() {
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           {!!errors.responseError && (
-            <Alert severity="error">{errors.responseError.message}</Alert>
+            <Alert severity="error">{errors.responseError.response.data.errors.message}</Alert>
           )}
           <Alert severity="info">
             Don’t have an account?{" "}
