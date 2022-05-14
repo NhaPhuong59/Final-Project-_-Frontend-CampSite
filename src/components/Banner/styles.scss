@@ -10,22 +10,6 @@
     
 }
 
-// .banner__info {
-//     background-color: rgba(0, 0, 0, 0.8);
-//     color: white;
-//     padding-top: 25vh;
-//     padding-left: 50px;
-//     padding-right: 50px;
-//     padding-bottom: 40px;
-//     width: 300px;
-//     height: 25vh;
-// }
-
-// .banner__info h1{
-//   margin-top: 1px;
-// }
-
-
 
 .banner__search {
     display: flex;
@@ -45,24 +29,6 @@
   padding: 5px 15px;
 }
 
-// .banner__info > button{
-//     background-color: #ff7779;
-//     color: white;
-//     text-transform: inherit;
-//     margin-top: 20px;
-//     font-weight: 600;
-//     z-index: 0;
-// }
-
-// .banner__info > button:hover {
-//     background-color: white;
-//     color: #ff7779;
-//   }
-  
-
-// .banner__info > h5 {
-//     margin-top: 10px;
-// }
 @media screen and (max-width:"400px") {
     .banner {
         height: 20vh;

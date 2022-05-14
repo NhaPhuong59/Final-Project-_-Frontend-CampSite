@@ -1,16 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { LoadingButton } from "@mui/lab";
-import { Container, Paper, Stack, Input, Button } from "@mui/material";
+import { Container, Paper, Stack } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { FormProvider } from "../../components/form";
 import { FTextField } from "../../components/form";
 import FTextarea from "../../components/form/FTextarea";
-import apiService from "../../utils/apiService";
 import Helper from "../../utils/Helper";
 import ImageUploaded from "../../components/ImageUploaded";
-import { useNavigate } from "react-router-dom";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
+import { useDispatch } from "react-redux";
+import { createCamp } from "./campSlice";
 
 const yupSchema = Yup.object().shape({
   title: Yup.string().required("Place is required"),
@@ -31,17 +31,17 @@ const defaultValues = {
 
 
 function CreateCamp() {
+  const dispatch = useDispatch()
+
   const [displayImages, setDisplayImages] = useState([]);
   const methods = useForm({ resolver: yupResolver(yupSchema),defaultValues });
   const { setValue, getValues, handleSubmit, reset} = methods;
-  const navigate = useNavigate();
 
   const handleImageChange = async (event) => {
     console.log('event', event);
     console.log("handleImageChange", event.target.files[0]);
     const images = await Helper.uploadImage(event.target.files);
     setDisplayImages([...displayImages,...images])
-    // console.log('setValue', 'images', images)
     const oldImages = getValues('images');
     setValue('images', [...oldImages, ...images]);
   };
@@ -57,17 +57,9 @@ function CreateCamp() {
       price
     };
     console.log("data1", dataCreated);
-    // dataCreated = JSON.stringify(dataCreated);
-    // console.log("data2", dataCreated);
-    try {
-      const res = await apiService.post("/camps", dataCreated).then(()=>reset());
-      const userCurrentID = res.data.data.camp.author
-      console.log(res);
-      navigate(`/partner/${userCurrentID}/camp`,{ replace: true})
-    } catch (error) {
-      console.log(error);
-    }
-    // db.push(dataCreated)
+    dispatch(createCamp({dataCreated})).then(()=>{
+      reset() 
+      setDisplayImages([])})
   };
   return (
     <Container maxWidth="md">

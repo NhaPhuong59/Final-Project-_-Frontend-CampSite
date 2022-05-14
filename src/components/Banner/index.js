@@ -1,30 +1,19 @@
 import React, { useState } from 'react'
 import './styles.scss'
-import { Button } from "@material-ui/core";
 import Search from '../Search';
-import { Box } from '@mui/system';
-// import { useHistory } from "react-router-dom";
 
-function Banner() {
-    // const history = useHistory();
+function Banner({setQuery, executeScroll, queryParams}) {
     const [showSearch, setShowSearch] = useState(false);
 
     return (
         <div className='banner'>
             <div className='banner__search'>
-                {showSearch && <Search />}
+                {showSearch && <Search setQuery={setQuery} queryParams={queryParams} executeScroll={executeScroll}/>}
 
                 <button onClick={() => setShowSearch(!showSearch)} className='banner__searchButton' variant='outlined'>
                     {showSearch ? "Hide" : "Search Dates"}
                 </button>
             </div>
-            {/* <div className='banner__info'>
-                <h1>Get out and stretch your imagination</h1>
-                <h5>
-                    Plan a different kind of getaway to uncover the hidden gems near you.
-                </h5>
-                <Button onClick={() => history.push('/search')} variant='outlined'>Explore Nearby</Button>
-            </div> */}
         </div>
     )
 }

@@ -3,27 +3,24 @@ import { Route, Routes } from "react-router-dom";
 import BlankLayout from "../layouts/BlankLayout";
 import MainLayout from "../layouts/MainLayout";
 import PartnerLayout from "../layouts/PartnerLayout";
-import CreateCamp from "../pages/CreateCamp";
-import DetailCampPage from "../pages/DetailCampPage";
-import HomePage from "../pages/HomePage";
+import DetailCampPage from "../pages/Customer/DetailCampPage";
+import HomePage from "../pages/Customer/HomePage";
 import NotFoundPage from "../pages/NotFoundPage";
 import PartnerAccount from "../pages/PartnerAccount";
-// import PartnerLoginPage from "../pages/PartnerLoginPage";
-// import PartnerRegisterPage from "../pages/PartnerRegisterPage";
-import UserAccount from "../pages/UserAccount";
 import UserChangePassword from "../pages/UserChangePassword";
 import UserLoginPage from "../pages/UserLoginPage";
 import UserRegisterPage from "../pages/UserRegisterPage";
 import UserResetPassword from "../pages/UserResetPassword";
 import AuthRequire from "./AuthRequire";
+import CustomerProfile from "../pages/Customer/CustomerProfile";
 
 function Router() {
   return (
     <Routes>
-      <Route path="/" element={<AuthRequire><MainLayout /></AuthRequire>}>
+      <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
         <Route path="/detailCamp/:id" element={<DetailCampPage />} />
-        <Route path="/user/:id" element={<UserAccount />} />
+        <Route path="/user/:id" element={<AuthRequire><CustomerProfile /></AuthRequire>} />
       </Route>
       <Route element={<BlankLayout />}>
         <Route path="/userLogin" element={<UserLoginPage />} />
@@ -34,9 +31,6 @@ function Router() {
       </Route>
       <Route path="/partner/:id" element={<AuthRequire><PartnerLayout /></AuthRequire>}>
         <Route path="/partner/:id" element={<PartnerAccount />} />
-        <Route path="create" element={<CreateCamp />} />
-        <Route path="user" element={<CreateCamp />} />
-        <Route path="camp" element={<CreateCamp />} />
       </Route>
     </Routes>
   );
