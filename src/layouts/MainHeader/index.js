@@ -82,9 +82,9 @@ const MainHeader = () => {
                 alignItems: "center",
               }}
             >
-              <Link to="/">
+              {/* <Link to="/"> */}
                 <img src={Logo} alt="logo" height={80} className="logo"/>
-              </Link>
+              {/* </Link> */}
             </Box>
           </Typography>
           <Typography
@@ -111,18 +111,18 @@ const MainHeader = () => {
                 alignItems: "center",
               }}
             >
-              <Link to="/">
+              {/* <Link to="/"> */}
                 <img src={Logo} alt="logo" height={80} />
-              </Link>
+              {/* </Link> */}
             </Box>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: {xs:"none", md:"center"} }}>
-          <div className="header_center">
+          {/* <div className="header_center">
                 <input type="text" placeholder="Search"/>
                 <IconButton style={{background:"#e55039", color:'white'}}>
                     <SearchIcon />
                 </IconButton>
-            </div>
+            </div> */}
           </Box>
 
           {(!isAuthenticated)?(

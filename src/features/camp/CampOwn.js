@@ -1,23 +1,40 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom';
 import CampOwnCard from '../../components/CampOwnCard';
+import apiService from '../../utils/apiService';
 
 function CampOwn() {
-  const [campOnw, setCampOnw] = useState([{
-    images : ["https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQ_wbPYTxQPMcBh7SPzLFActXnP3uhifeVT_g&usqp=CAU"],
+  const authorId = useParams()
+  const [campOwn, setCampOwn] = useState([{
+    images : [],
         address : {
-          addressText:"Private room in center of London"
+          addressText:""
         },
-        title : "Stay at this spacious Edwardian House",
+        title : "",
         rating : 0,
         price : 0,
-        description : "1 guest · 1 bedroom · 1 bed · 1.5 shared bthrooms · Wifi · Kitchen · Free parking · Washing Machine"
+        description : ""
   }]);
+
+  useEffect(() => {
+    const getListCampOwn = async()=>{
+      try {
+        const res = await apiService.get(`/camps/author/${authorId.id}`)
+        setCampOwn(res.data.data)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    getListCampOwn()
+  }, [authorId]);
+console.log("campOwn",campOwn)
   return (
     <div>
-      {campOnw.map((camp)=>(
+      {campOwn.map((camp)=>(
         <CampOwnCard 
-        img = {camp.images[0]}
-        location = {camp.address.addressText}
+        id={camp._id}
+        images = {camp.images}
+        location = {camp.address}
         title = {camp.title}
         rating = {camp.rating}
         price = {camp.price}
