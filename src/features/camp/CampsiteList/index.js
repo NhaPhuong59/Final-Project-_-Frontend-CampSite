@@ -1,16 +1,14 @@
 import { Box, Grid, Pagination } from "@mui/material";
 import * as React from "react";
-import { useState, useEffect } from "react";
 import ImageListItem from "@mui/material/ImageListItem";
 import ImageListItemBar from "@mui/material/ImageListItemBar";
-import ListSubheader from "@mui/material/ListSubheader";
 import IconButton from "@mui/material/IconButton";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
 import { Link } from "react-router-dom";
 import "./styles.scss";
 
 
-function CampsiteList({list}) {
+function CampsiteList({list, queryParams}) {
 
   return (
     
@@ -28,7 +26,6 @@ function CampsiteList({list}) {
                 alt={title}
                 loading="lazy"
               />
-              {/* {console.log(images)} */}
               <ImageListItemBar
                 sx={{
                   background:
@@ -47,7 +44,7 @@ function CampsiteList({list}) {
                 }
                 actionPosition="left"
               />
-              <Link to={`/detailCamp/${_id}`}>
+              <Link to={`/camp/${_id}?startDate=${queryParams.startDate}&endDate=${queryParams.endDate}`}>
                 <ImageListItemBar
                   className="content-container"
                   sx={{
@@ -64,7 +61,7 @@ function CampsiteList({list}) {
         ))}
       </Grid>
 
-      <Box
+      {/* <Box
         sx={{
           display: "flex",
           justifyContent: "center",
@@ -77,7 +74,7 @@ function CampsiteList({list}) {
           page={1}
           // onChange={(e, value) => setPage(value)}
         />
-      </Box>
+      </Box> */}
     </div>
   );
 }

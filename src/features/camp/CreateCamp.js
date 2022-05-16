@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { LoadingButton } from "@mui/lab";
 import { Container, Paper, Stack } from "@mui/material";
 import { useForm } from "react-hook-form";
-import { FormProvider } from "../../components/form";
+import { FMultiCheckbox, FormProvider } from "../../components/form";
 import { FTextField } from "../../components/form";
 import FTextarea from "../../components/form/FTextarea";
 import Helper from "../../utils/Helper";
@@ -27,8 +27,16 @@ const defaultValues = {
   addressUrl: "",
   addressText: "",
   price: "",
+  amenites: {
+    canal_view: false,
+    free_parking_on_premises:false,
+    shared_hot_tub:false,
+    portable_air_conditioning:false,
+    breakfast: false
+  }
 };
 
+// const AMENITIES_OPTION =["Canal view", "Free parking on premises", "Shared hot tub", "Portable air conditioning", "Breakfast"]
 
 function CreateCamp() {
   const dispatch = useDispatch()
@@ -61,6 +69,7 @@ function CreateCamp() {
       reset() 
       setDisplayImages([])})
   };
+
   return (
     <Container maxWidth="md">
       <Paper>
@@ -69,8 +78,6 @@ function CreateCamp() {
             <FTextField
               name="title"
               label="Name Place"
-              placehoder="input name"
-              defaultValue=" "
               size="small"
             />
             <FTextField name="addressText" label="Address" size="small"/>
@@ -90,6 +97,8 @@ function CreateCamp() {
             </label>
             <ImageUploaded images={displayImages}/>
             <FTextField name="addressUrl" label="Location Url" size="small"/>
+            {/* <FMultiCheckbox name="Amenities" options={AMENITIES_OPTION}/> */}
+            
             <FTextarea
               name="description"
               label="Description"

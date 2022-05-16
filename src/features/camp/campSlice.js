@@ -7,6 +7,17 @@ const initialState = {
   isLoading: false,
   error: null,
   camps: [],
+  totalPage:"",
+  detailCamp: {
+    title: "",
+    images: [],
+    address: {
+      addressUrl: "",
+      addressText: "",
+    },
+    description: "",
+    rating: "",
+  }
 };
 
 const slice = createSlice({
@@ -24,12 +35,22 @@ const slice = createSlice({
     getListCampSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      state.camps = action.payload;
+      state.camps = action.payload.searchList;
+      state.totalPage = action.payload.totalPage;
     },
     createCampSuccess(state) {
       state.isLoading = false;
       state.error = null;
     },
+    getDetailCampSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.detailCamp = action.payload
+    },
+    updateCampSuccess(state,action) {
+      state.isLoading = false;
+      state.error = null;
+    }
   },
 });
 
@@ -42,7 +63,7 @@ export const getListCamp = (payload) => async (dispatch) => {
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get("/camps", { params });
-    dispatch(slice.actions.getListCampSuccess(response.data.data.searchList));
+    dispatch(slice.actions.getListCampSuccess(response.data.data));
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
     toast.error(error.message);
@@ -63,3 +84,28 @@ export const createCamp =
       toast.error(error.message);
     }
   };
+
+export const getDetailCamp = ({campId}) => async (dispatch)=>{
+  console.log(campId.id)
+  dispatch(slice.actions.startLoading());
+  try {
+    const response = await apiService.get(`/camps/camp/${campId.id}`)
+    console.log("response",response.data)
+    dispatch(slice.actions.getDetailCampSuccess(response.data.camp))
+  } catch (error) {
+    dispatch(slice.actions.hasError(error.message));
+    toast.error(error.message);
+  }
+}
+
+export const updateCamp = ({dataUpdate, id})=>async (dispatch) => {
+  dispatch(slice.actions.startLoading());
+  try {
+    await apiService.put("/camps", {dataUpdate, id});
+    dispatch(slice.actions.updateCampSuccess());
+    toast.success("Update successfully");
+  } catch (error) {
+    dispatch(slice.actions.hasError(error.message));
+    toast.error(error.message);
+  }
+}

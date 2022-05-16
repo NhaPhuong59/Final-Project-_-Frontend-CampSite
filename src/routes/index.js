@@ -19,7 +19,7 @@ function Router() {
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/detailCamp/:id" element={<DetailCampPage />} />
+        <Route path="/camp/:id" element={<DetailCampPage />} />
         <Route path="/user/:id" element={<AuthRequire><CustomerProfile /></AuthRequire>} />
       </Route>
       <Route element={<BlankLayout />}>
