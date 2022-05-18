@@ -1,86 +1,73 @@
-import { Grade } from '@material-ui/icons'
-import { Campaign } from '@mui/icons-material'
 import { TabContext, TabList, TabPanel } from '@mui/lab'
-import { Box, Grid, Paper, Stack, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
+import { Box, Divider, Paper, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import React, {useEffect, useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
-import apiService from '../../utils/apiService'
+import { getCampOnw } from '../camp/campSlice'
+import { getBookingSuccess } from './bookingSlice'
 import "./styles.scss"
 
-function createData(name, email, startDate, endDate, num_guests, totalprice) {
-  return { name, email, startDate, endDate, num_guests, totalprice };
-}
-let rows = []
 
 function UserBooking() {
 const authorId = useParams()
-const [listOwnCamp, setListOwnCamp] = useState([]);
-const [bookingList, setBookingList] = useState([]);
+const dispatch = useDispatch()
+const {camps} = useSelector((state)=>state.camp)
+const {bookingList} = useSelector((state)=>state.booking)
 
-const [value, setValue] = React.useState(0);
+console.log("camps",camps)
+
+const [value, setValue] = React.useState("0");
 
 useEffect(() => {
-  const getCamp = async()=>{
-    try {
-      const res = await apiService(`/camps/author/${authorId.id}`)
-      console.log(res.data)
-      setListOwnCamp(res.data.data)
-    } catch (error) {
-      console.log(error);
-    }
-  }
-  getCamp()
-}, [authorId]);
+  dispatch(getCampOnw({authorId}))
+}, [authorId, dispatch]);
 
 const handleChange = (event, newValue) => {
   setValue(newValue);
 };
-const handleCampId = async(campId)=>{
-  try {
-    const res = await apiService.get(`/booking/campId/${campId}`)
-    console.log(res.data.data)
-    setBookingList(res.data.data)
-  } catch (error) {
-    
-  }
+const handleBookingList = async(campId)=>{
+  console.log(campId)
+  dispatch(getBookingSuccess(campId))
 }
 
   return (
     <div>
       <Box 
-      sx={{ flexGrow: 1, bgcolor: 'background.paper', display: 'flex', height: 224 }}
+      sx={{ flexGrow: 1, display: 'flex', height: "60vh" }}
       >
-      <TabContext value={value}>
-        <Box >
+      <TabContext value={value.toString()}>
+        <Box margin="24px 10px 0">
           <TabList 
-          
+          sx={{ boxShadow:"2px 1px 8px lightgray",borderRadius:"5px",backgroundColor:"#FFF"}}
           onChange={handleChange} 
           aria-label="lab API tabs example"
           orientation="vertical"
           >
-            {listOwnCamp.map((camp, index)=>(
-              <Tab label={camp.title} value={index} 
-              sx={{ border: "1px solid lightgray" }}
-              onClick={()=>handleCampId(camp._id)}
+            {camps.map((camp, index)=>(
+              <React.Fragment>
+              <Tab key={camp._id} label={camp.title} value={index.toString()} 
+              sx={{  }}
+              onClick={()=>handleBookingList(camp._id)}
               />
-
+              <Divider/>
+              </React.Fragment>
             ))}
           </TabList>
         </Box>
-        {listOwnCamp.map((camp, index)=>(
-          <TabPanel value={index}>
+        {camps.map((camp, index)=>(
+          <TabPanel value={index.toString()} key={camp._id} sx={{bgcolor: "rgb(250, 234, 234)"}}>
 <div>
 
-            <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell>Full Name</TableCell>
-            <TableCell align="right">Email Address</TableCell>
-            <TableCell align="right">Start Date</TableCell>
-            <TableCell align="right">End Date</TableCell>
-            <TableCell align="right">Number of Guests</TableCell>
-            <TableCell align="right">Total Price</TableCell>
+            <TableContainer component={Paper} >
+      <Table sx={{ minWidth: 650}} aria-label="simple table">
+        <TableHead >
+          <TableRow >
+            <TableCell sx={{ fontWeight:"600"}}>Full Name</TableCell>
+            <TableCell sx={{ fontWeight:"600"}} align="right">Email Address</TableCell>
+            <TableCell sx={{ fontWeight:"600"}} align="right">Start Date</TableCell>
+            <TableCell sx={{ fontWeight:"600"}} align="right">End Date</TableCell>
+            <TableCell sx={{ fontWeight:"600"}} align="right">Number of Guests</TableCell>
+            <TableCell sx={{ fontWeight:"600"}} align="right">Total Price</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>

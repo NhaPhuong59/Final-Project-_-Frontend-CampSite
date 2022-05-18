@@ -1,5 +1,4 @@
 import { createContext, useReducer, useEffect } from "react";
-// import { useSelector } from "react-redux";
 import apiService from "../utils/apiService";
 import { isValidToken } from "../utils/jwt";
 
@@ -13,7 +12,6 @@ const INITIALIZE = "AUTH.INITIALIZE";
 const LOGIN_SUCCESS = "AUTH.LOGIN_SUCCESS";
 const REGISTER_SUCCESS = "AUTH.REGISTER_SUCCESS";
 const LOGOUT = "AUTH.LOGOUT";
-// const UPDATE_PROFILE = "AUTH.UPDATE_PROFILE";
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -43,43 +41,6 @@ const reducer = (state, action) => {
         isAuthenticated: false,
         user: null,
       };
-    // case UPDATE_PROFILE:
-    //   const {
-    //     name,
-    //     avatarUrl,
-    //     coverUrl,
-    //     aboutMe,
-    //     city,
-    //     country,
-    //     company,
-    //     jobTitle,
-    //     facebookLink,
-    //     instagramLink,
-    //     linkedinLink,
-    //     twitterLink,
-    //     friendCount,
-    //     postCount,
-    //   } = action.payload;
-    //   return {
-    //     ...state,
-    //     user: {
-    //       ...state.user,
-    //       name,
-    //       avatarUrl,
-    //       coverUrl,
-    //       aboutMe,
-    //       city,
-    //       country,
-    //       company,
-    //       jobTitle,
-    //       facebookLink,
-    //       instagramLink,
-    //       linkedinLink,
-    //       twitterLink,
-    //       friendCount,
-    //       postCount,
-    //     },
-      // };
     default:
       return state;
   }
@@ -99,7 +60,6 @@ const AuthContext = createContext({ ...initialState });
 
 function AuthProvider({ children }) {
   const [state, dispatch] = useReducer(reducer, initialState);
-  // const updatedProfile = useSelector((state) => state.user.updatedProfile);
 
   useEffect(() => {
     const initialize = async () => {
@@ -143,10 +103,6 @@ function AuthProvider({ children }) {
     initialize();
   }, []);
 
-  // useEffect(() => {
-  //   if (updatedProfile)
-  //     dispatch({ type: UPDATE_PROFILE, payload: updatedProfile });
-  // }, [updatedProfile]);
 
   const login = async ({ email, password }, callback) => {
     console.log("hello2")
