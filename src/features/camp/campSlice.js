@@ -50,6 +50,11 @@ const slice = createSlice({
     updateCampSuccess(state,action) {
       state.isLoading = false;
       state.error = null;
+    },
+    getCampOnwSuccess(state,action){
+      state.isLoading = false;
+      state.error = null;
+      state.camps = action.payload
     }
   },
 });
@@ -104,6 +109,18 @@ export const updateCamp = ({dataUpdate, id})=>async (dispatch) => {
     await apiService.put("/camps", {dataUpdate, id});
     dispatch(slice.actions.updateCampSuccess());
     toast.success("Update successfully");
+  } catch (error) {
+    dispatch(slice.actions.hasError(error.message));
+    toast.error(error.message);
+  }
+}
+
+export const getCampOnw= ({authorId})=> async(dispatch)=>{
+  dispatch(slice.actions.startLoading());
+  try {
+    const res = await apiService(`/camps/author/${authorId.id}`)
+    console.log("getCampOnw",res.data.data )
+    dispatch(slice.actions.getCampOnwSuccess(res.data.data))
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
     toast.error(error.message);

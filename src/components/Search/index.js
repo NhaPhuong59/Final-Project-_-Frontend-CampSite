@@ -10,7 +10,7 @@ import moment from "moment";
 import { Divider, IconButton } from "@mui/material";
 
 // DATE PICKER COMPONENT
-function Search({ setQuery, queryParams, handleSearch }) {
+function Search({ setQuery, queryParams}) {
   const startDate = new Date(queryParams.startDate || new Date());
   const endDate = new Date(queryParams.endDate || new Date());
   const selectionRange = {
@@ -49,7 +49,7 @@ function Search({ setQuery, queryParams, handleSearch }) {
         <PeopleIcon />
       </h3>
       {/* <input min={0} defaultValue={2} type="number" className="input" /> */}
-      <button className="search_btn" onClick={handleSearch}>
+      <button className="search_btn">
         Search Camp
       </button>
     </div>

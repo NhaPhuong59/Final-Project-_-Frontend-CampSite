@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import {
@@ -25,7 +25,8 @@ import moment from "moment";
 import { LoadingButton } from "@mui/lab";
 import { useDispatch, useSelector } from "react-redux";
 import { getDetailCamp } from "../../../features/camp/campSlice";
-import { createBooking } from "../../../features/booking/bookingSlice";
+import { createBooking, getAllBooking } from "../../../features/booking/bookingSlice";
+import useEqual from "../../../hooks/useEqual";
 
 const BookingSchema = Yup.object().shape({
   guestName: Yup.string().required("Name is required"),
@@ -39,17 +40,20 @@ const defaultValues = {
 
 function DetailCampPage() {
   const { detailCamp } = useSelector((state) => state.camp);
-
+  const { bookingList } = useSelector((state) => state.booking);
   const dispatch = useDispatch();
-  console.log("detailCamp", detailCamp)
-
   const campId = useParams();
-  const [query] = useSearchParams();
+  const [query, setQuery] = useSearchParams();
+  
+  console.log("bookingList",bookingList)
+
+  const queryParams = useEqual({
+    startDate: query.get("startDate"),
+    endDate: query.get("endDate"),
+  });
 
   const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-  // console.log("query", query.get("startDate"));
+  const [openCheck, setOpenCheck] = React.useState(false);
 
   const methods = useForm({
     resolver: yupResolver(BookingSchema),
@@ -58,16 +62,11 @@ function DetailCampPage() {
   const {
     handleSubmit,
     reset,
-    setError,
     formState: { isSubmitting },
   } = methods;
 
-  const [startDate, setStartDate] = useState(
-    new Date(query.get("startDate") || new Date())
-  );
-  const [endDate, setEndDate] = useState(
-    new Date(query.get("endDate") || new Date())
-  );
+  const startDate = new Date(queryParams.startDate || new Date());
+  const endDate = new Date(queryParams.endDate || new Date());
 
   const selectionRange = {
     startDate: startDate,
@@ -76,16 +75,43 @@ function DetailCampPage() {
   };
 
   function handleSelect(ranges) {
-    setStartDate(ranges.selection.startDate);
-    setEndDate(ranges.selection.endDate);
+    setQuery({
+      ...queryParams,
+      startDate: moment(ranges.selection.startDate).format("YYYY-MM-DD"),
+      endDate: moment(ranges.selection.endDate).format("YYYY-MM-DD"),
+    });
   }
 
-  // console.log("startDate DetailCamp",startDate)
-  // console.log("endDate Detailcamp",endDate)
+  const getDateArray = (startDate, endDate)=>{
+    console.log("getDateArray","startDate",new Date(startDate))
+    console.log("getDateArray","endDate",new Date(endDate))
+
+    const dateArray = []
+    for ( let dt=new Date(startDate); dt<=new Date(endDate); dt.setDate(dt.getDate()+1)){
+    console.log("getDateArray","dt",dt)
+      
+      dateArray.push(new Date(dt))
+    console.log("dateArray",dateArray)
+      
+    }
+    console.log(dateArray)
+    return dateArray
+  }
+
+  let bookedDatesList=[]
+  bookingList.forEach(({startDate,endDate})=>{
+    console.log("bookedDatesList","startDate",startDate)
+    console.log("bookedDatesList","endDate",endDate)
+    const daylist= getDateArray(startDate, endDate)
+    console.log("daylist",daylist)
+    bookedDatesList = bookedDatesList.concat(daylist)
+  })
+  console.log("bookedDatesList",bookedDatesList)
 
   useEffect(() => {
     console.log("Hi");
     dispatch(getDetailCamp({campId}))
+    dispatch(getAllBooking({campId}))
   }, [campId, dispatch]);
   
   const onSubmit = async(data) => {
@@ -105,6 +131,7 @@ function DetailCampPage() {
     .then(()=>{
       reset();
       setOpen(false)
+      setOpenCheck(true)
     })
   };
 
@@ -171,6 +198,8 @@ function DetailCampPage() {
                     // showPreview={false}
                     shownDate={false}
                     // showDateDisplay={true}
+                    disabledDates={bookedDatesList}
+
                   />
                   <Divider width="350px" />
                   <h3>
@@ -183,7 +212,7 @@ function DetailCampPage() {
                     />
                     <PeopleIcon />
                   </h3>
-                  <button className="search_btn" onClick={handleOpen}>
+                  <button className="search_btn" onClick={() => setOpen(true)}>
                     Book
                   </button>
                 </div>
@@ -196,7 +225,7 @@ function DetailCampPage() {
       </div>
       <Modal
         open={open}
-        onClose={handleClose}
+        onClose={() => setOpen(false)}
         aria-labelledby="modal-name"
         aria-describedby="modal-email"
       >
@@ -218,6 +247,16 @@ function DetailCampPage() {
             </Stack>
           </FormProvider>
         </Stack>
+      </Modal>
+      <Modal
+      open={openCheck}
+      onClose={()=>setOpenCheck(false)}
+      // aria-labelledby=""
+      // aria-describedby="modal-email"
+      >
+        <Stack className="form_booking">
+       <Typography textAlign="center" color="#2e86de" fontSize="22px" padding="40px"> Please check your email to confirm this booking!</Typography>
+       </Stack>
       </Modal>
     </div>
   );

@@ -13,6 +13,7 @@ import UserRegisterPage from "../pages/UserRegisterPage";
 import UserResetPassword from "../pages/UserResetPassword";
 import AuthRequire from "./AuthRequire";
 import CustomerProfile from "../pages/Customer/CustomerProfile";
+import ConfirmBooking from "../pages/Authentication/ConfirmBooking";
 
 function Router() {
   return (
@@ -28,6 +29,7 @@ function Router() {
         <Route path="/userReset" element={<UserResetPassword />} />
         <Route path="/userReset/:token" element={<UserChangePassword />} />
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="/confirmBooking/:token/" element={<ConfirmBooking/>}/>
       </Route>
       <Route path="/partner/:id" element={<AuthRequire><PartnerLayout /></AuthRequire>}>
         <Route path="/partner/:id" element={<PartnerAccount />} />
