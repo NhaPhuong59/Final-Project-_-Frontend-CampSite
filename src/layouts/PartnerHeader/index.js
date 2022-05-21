@@ -10,19 +10,15 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import { Link, useNavigate } from "react-router-dom";
-import Logo from "../../images/logoNok3.jpg";
+import Logo from "../../images/logo5.png";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
 
 const PartnerHeader = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
+  
   const handleOpenUserMenu = (event) => {
     console.log(event);
     setAnchorElUser(event.currentTarget);
@@ -36,19 +32,6 @@ const PartnerHeader = () => {
     setAnchorElUser(null);
   };
 
-  // const handleNavigate = (event) => {
-  //   handleCloseUserMenu();
-  //   const text = event.target.innerText;
-  //   console.log(event.target.innerText);
-  //   console.log(text === "USER");
-  //   if (text === "USER") {
-  //     navigate("user");
-  //   } else if (text === "CAMP") {
-  //     navigate("camp");
-  //   } else if (text === "CREATE CAMP") {
-  //     navigate("create");
-  //   }
-  // };
 
   const handleLogout = async () => {
     try {
@@ -68,7 +51,7 @@ const PartnerHeader = () => {
   );
   return (
     <React.Fragment>
-    <AppBar position="static" sx={{backgroundColor:"#FFF", boxShadow:"none"}} className="app_bar">
+    <AppBar position="static" sx={{backgroundColor:"#ffb95e", boxShadow:"none", height:"100px"}} className="app_bar">
       <Container maxWidth="xl">
         <Toolbar disableGutters>
           <Typography
@@ -93,12 +76,9 @@ const PartnerHeader = () => {
               }}
             >
                 <img src={Logo} alt="logo" height={80} className="logo"/>
+                <div className="logo_name">noknok</div>
             </Box>
           </Typography>
-
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
-           
-          </Box> */}
           <Typography
             variant="h5"
             noWrap
@@ -122,6 +102,7 @@ const PartnerHeader = () => {
               }}
             >
                 <img src={Logo} alt="logo" height={80} />
+                <div className="logo_name">noknok</div>
             </Box>
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
@@ -174,9 +155,6 @@ const PartnerHeader = () => {
         </Toolbar>
       </Container>
     </AppBar>
-    {/* <Box position="static" zIndex={-1}>
-      <img src={CoverImg} alt="cover" height={400}/>
-    </Box> */}
     </React.Fragment>
   );
 };

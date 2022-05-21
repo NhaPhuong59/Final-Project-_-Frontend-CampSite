@@ -69,7 +69,8 @@ function UserResetPassword() {
   return (
       <React.Fragment>
      {!success? (
-        <Container maxWidth="xs">
+    <Box sx={{background:"#ffb95e", height:"80vh"}} >
+        <Container maxWidth="xs" sx={{background:"#fff", padding:"5rem"}}>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3} mb={3}>
             {!!errors.responseError && (
@@ -89,11 +90,13 @@ function UserResetPassword() {
             type="submit"
             variant="contained"
             loading={isSubmitting}
+            sx={{background:"#07A4B5"}}
           >
             Next
           </LoadingButton>
         </FormProvider>
       </Container>
+      </Box>
      ):(
          <Container maxWidth="md">
          <Typography variant="h6" color="#1e90ff" align="center">{success}</Typography>

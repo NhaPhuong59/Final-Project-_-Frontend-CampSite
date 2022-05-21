@@ -71,7 +71,7 @@ function CreateCamp() {
   };
 
   return (
-    <Container maxWidth="md">
+    <Container maxWidth="md" sx={{background:"#fff", padding:"5rem"}}>
       <Paper>
         <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={2}>
@@ -109,6 +109,7 @@ function CreateCamp() {
               type="submit"
               variant="contained"
               fullWidth
+              sx={{background:"#ffb95e"}}
             >
               Create
             </LoadingButton>

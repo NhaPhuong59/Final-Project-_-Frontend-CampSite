@@ -16,21 +16,21 @@ function CampCard({camp, queryParams}) {
   return (
     <Grid item xs={12} md={6} lg={4} key={_id}>
 
-    <Card sx={{ maxWidth: 270, boxShadow:"4px 2px 8px lightgray" }} onClick={handleClick}>
+    <Card sx={{ maxWidth: 290, boxShadow:"2px 2px 6px #FED8A7", border:"1px solid #FED8A7" }} onClick={handleClick}>
       <CardActionArea>
         <CardMedia
           component="img"
-          height="220"
+          height="250"
           image={images[0]}
           alt={title}
         />
-        <CardContent>
+        <CardContent sx={{}}>
           <Typography gutterBottom variant="body" sx={{fontSize:"1rem", fontWeight:"550"}} component="div" noWrap>
             {title}
           </Typography>
-          <Typography variant="body2" color="text.secondary" noWrap>
+          {/* <Typography variant="body2" color="text.secondary" noWrap>
            {description}
-          </Typography>
+          </Typography> */}
           <Typography variant='body2' >${price} night</Typography>
         </CardContent>
       </CardActionArea>

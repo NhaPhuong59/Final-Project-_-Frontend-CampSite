@@ -6,6 +6,7 @@ import {
   IconButton,
   InputAdornment,
   Container,
+  Box,
 } from "@mui/material";
 import { LoadingButton } from "@mui/lab";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -82,7 +83,8 @@ function UserChangePassword() {
   };
 
   return (
-    <Container maxWidth="xs">
+    <Box sx={{background:"#ffb95e", height:"80vh"}} >
+    <Container maxWidth="xs" sx={{background:"#fff", padding:"5rem"}}>
       <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           {!!errors.responseError && (
@@ -139,12 +141,14 @@ function UserChangePassword() {
             type="submit"
             variant="contained"
             loading={isSubmitting}
+            sx={{background:"#07A4B5"}}
           >
             Change Password
           </LoadingButton>
         </Stack>
       </FormProvider>
     </Container>
+    </Box>
   );
 }
 

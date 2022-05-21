@@ -55,7 +55,7 @@ const handleBookingList = async(campId)=>{
           </TabList>
         </Box>
         {camps.map((camp, index)=>(
-          <TabPanel value={index.toString()} key={camp._id} sx={{bgcolor: "rgb(250, 234, 234)"}}>
+          <TabPanel value={index.toString()} key={camp._id} sx={{bgcolor: "#c9eff9"}}>
 <div>
 
             <TableContainer component={Paper} >

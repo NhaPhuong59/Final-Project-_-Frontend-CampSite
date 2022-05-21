@@ -1,4 +1,4 @@
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Box } from "@mui/material";
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -16,6 +16,7 @@ function ConfirmBooking() {
   }, [token, dispatch]);
 
   return (
+    <Box sx={{background:"#ffb95e", height:"80vh"}} >
     <Stack className="confirmation" spacing={3}>
       <Stack className="message">
         {(error)?(
@@ -24,11 +25,12 @@ function ConfirmBooking() {
                 }
       </Stack>
       <Stack width={200}>
-        <Button href="/" variant="contained" className="button">
+        <Button href="/" variant="contained" className="button" sx={{background:"#07A4B5"}}>
           Home
         </Button>
       </Stack>
     </Stack>
+    </Box>
   );
 }
 
