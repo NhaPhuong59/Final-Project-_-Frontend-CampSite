@@ -1,13 +1,10 @@
 import {
   Box,
   Container,
-  duration,
   Grid,
   Pagination,
-  Stack,
 } from "@mui/material";
-import React, { useRef, useState, useEffect } from "react";
-import CampsiteList from "../../../features/camp/CampsiteList";
+import React, { useRef, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getListCamp } from "../../../features/camp/campSlice";
@@ -15,6 +12,8 @@ import useEqual from "../../../hooks/useEqual";
 import "./styles.scss";
 import Search from "../../../components/Search";
 import CampCard from "../../../features/camp/CampCard";
+import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
+import { scroller } from "react-scroll";
 
 function HomePage() {
   const { camps, totalPage } = useSelector((state) => state.camp);
@@ -26,6 +25,8 @@ function HomePage() {
     camp: "",
     page: 1,
     limit: 9,
+    minPrice:"",
+    maxPrice:""
   });
   const queryParams = useEqual({
     startDate: query.get("startDate"),
@@ -33,20 +34,39 @@ function HomePage() {
     camp: query.get("camp"),
     page: query.get("page"),
     limit: query.get("limit"),
+    minPrice: query.get("minPrice"),
+    maxPrice: query.get("maxPrice"),
+
   });
 
   const myRef = useRef(null);
+
+  const scrollToSection = () => {
+    scroller.scrollTo("scrollTo", {
+      duration: 1200,
+      delay: 0,
+      smooth: "easeInOutQuart",
+    });
+  };
 
   useEffect(() => {
     dispatch(getListCamp({ ...queryParams }));
   }, [dispatch, queryParams]);
 
-  // const handleSearch = () => {};
   console.log("HomePage", "queryParams", queryParams);
   return (
     <div className="home">
-      <Container maxWidth="xl">
-        <div className="banner"></div>
+      <div className="banner">
+        <div className="banner_title">
+          <h4 className="title_travel">Traveling</h4>
+          <div className="title_share">Sharing</div>
+          <div className="title_wellcome">Wellcome to Nok Nok!</div>
+        </div>
+        <div className="banner_image"></div>
+        <div className="banner_scroll"  onClick={scrollToSection}><ArrowDropDownCircleOutlinedIcon fontSize="large" className="icon_drop"/></div>
+      </div>
+      <div className="home_main_section scrollTo">
+      <Container maxWidth="xl" >
         <Grid container sx={{ mt: "30px" }}>
           <Grid item xs={3.5}>
             <Search setQuery={setQuery} queryParams={queryParams} />
@@ -57,7 +77,6 @@ function HomePage() {
               {camps.map((camp) => (
                 <CampCard camp={camp} queryParams={queryParams} />
               ))}
-                {/* <CampsiteList list={camps} queryParams={queryParams} /> */}
               </Grid>
             </Box>
             <Box
@@ -77,6 +96,7 @@ function HomePage() {
           </Grid>
         </Grid>
       </Container>
+      </div>
     </div>
   );
 }

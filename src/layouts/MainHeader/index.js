@@ -8,32 +8,24 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import {  Link, useNavigate } from "react-router-dom";
-import Logo from "../../images/logoNok3.jpg";
+import { Link, useNavigate } from "react-router-dom";
+import Logo from "../../images/logo5.png";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
-import SearchIcon from '@material-ui/icons/Search';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
-import LoginIcon from '@mui/icons-material/Login';
-import "./styles.scss"
+import SearchIcon from "@material-ui/icons/Search";
+import AccountCircleIcon from "@material-ui/icons/AccountCircle";
+import LoginIcon from "@mui/icons-material/Login";
+import "./styles.scss";
 
 const MainHeader = () => {
   const navigate = useNavigate();
-  const { user, logout, isAuthenticated} = useAuth();
-  // const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const { user, logout, isAuthenticated } = useAuth();
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  // const handleOpenNavMenu = (event) => {
-  //   setAnchorElNav(event.currentTarget);
-  // };
   const handleOpenUserMenu = (event) => {
     console.log(event);
     setAnchorElUser(event.currentTarget);
   };
-
-  // const handleCloseNavMenu = (event) => {
-  //   setAnchorElNav(null);
-  // };
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
@@ -56,9 +48,13 @@ const MainHeader = () => {
     </MenuItem>
   );
   return (
-    <AppBar position="static" sx={{backgroundColor:"#FFF", boxShadow:"none"}} className="app_bar">
+    <AppBar
+      position="absolute"
+      sx={{ background: "none", boxShadow: "none" }}
+      className="app_bar"
+    >
       <Container maxWidth="xl">
-        <Toolbar disableGutters >
+        <Toolbar disableGutters>
           <Typography
             variant="h6"
             noWrap
@@ -75,16 +71,15 @@ const MainHeader = () => {
             }}
           >
             <Box
-              height={100}
+              height={150}
               sx={{
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
               }}
             >
-              {/* <Link to="/"> */}
-                <img src={Logo} alt="logo" height={80} className="logo"/>
-              {/* </Link> */}
+              <img src={Logo} alt="logo" height={60} className="logo" />
+              <div className="logo_name">noknok</div>
             </Box>
           </Typography>
           <Typography
@@ -111,82 +106,84 @@ const MainHeader = () => {
                 alignItems: "center",
               }}
             >
-              {/* <Link to="/"> */}
-                <img src={Logo} alt="logo" height={80} />
-              {/* </Link> */}
+              <img src={Logo} alt="logo" height={80} />
+              <div className="logo_name">noknok</div>
             </Box>
           </Typography>
-          <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" }, justifyContent: {xs:"none", md:"center"} }}>
-          {/* <div className="header_center">
-                <input type="text" placeholder="Search"/>
-                <IconButton style={{background:"#e55039", color:'white'}}>
-                    <SearchIcon />
-                </IconButton>
-            </div> */}
-          </Box>
+          <Box
+            sx={{
+              flexGrow: 1,
+              display: { xs: "none", md: "flex" },
+              justifyContent: { xs: "none", md: "center" },
+            }}
+          ></Box>
 
-          {(!isAuthenticated)?(
-            <Box sx={{ flexGrow: 0,display:"flex", alignItems:"center" }} >
-            <Typography href="/userLogin" component="a" sx={{
-              fontFamily: "monospace",
-              fontWeight: 700,
-              color:"#e55039",
-              letterSpacing: ".1rem",
-              textDecoration: "none",
-            }}>
-               Login
+          {!isAuthenticated ? (
+            <Box sx={{ flexGrow: 0, display: "flex", alignItems: "center" }}>
+              <Typography
+                href="/userLogin"
+                component="a"
+                sx={{
+                  fontWeight: 700,
+                  textDecoration: "none",
+                }}
+              >
+                <div className="login_btn">Login</div>
               </Typography>
-              <IconButton><LoginIcon/></IconButton>
-              
-          </Box>
-          ):(
-          <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{p: 0, border: "1px solid lightGrey", width:"1.5em", height:"1.5em" }} >
-                <AccountCircleIcon fontSize="3"/>
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: "45px" }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: "top",
-                horizontal: "right",
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              <Box sx={{ my: 1.5, px: 2.5 }}>
-                <Typography variant="subtitle2" noWrap>
-                  {user?.userName}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  sx={{ color: "text.secondary" }}
-                  noWrap
+            </Box>
+          ) : (
+            <Box sx={{ flexGrow: 0 }}>
+              <Tooltip title="Open settings">
+                <IconButton
+                  onClick={handleOpenUserMenu}
+                  sx={{
+                    p: 0,
+                    border: "1px solid lightGrey",
+                    width: "1.5em",
+                    height: "1.5em",
+                  }}
                 >
-                  {user?.email}
-                </Typography>
-              </Box>
+                  <AccountCircleIcon fontSize="3" />
+                </IconButton>
+              </Tooltip>
+              <Menu
+                sx={{ mt: "45px" }}
+                id="menu-appbar"
+                anchorEl={anchorElUser}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={Boolean(anchorElUser)}
+                onClose={handleCloseUserMenu}
+              >
+                <Box sx={{ my: 1.5, px: 2.5 }}>
+                  <Typography variant="subtitle2" noWrap>
+                    {user?.userName}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    sx={{ color: "text.secondary" }}
+                    noWrap
+                  >
+                    {user?.email}
+                  </Typography>
+                </Box>
 
-              <Divider sx={{ borderStyle: "dashed" }} />
+                <Divider sx={{ borderStyle: "dashed" }} />
 
-              <MenuItem >
-                <Typography textAlign="center">Account Settings</Typography>
-              </MenuItem>
-              {renderLogout}
-            </Menu>
-          </Box>
+                <MenuItem>
+                  <Typography textAlign="center">Account Settings</Typography>
+                </MenuItem>
+                {renderLogout}
+              </Menu>
+            </Box>
           )}
-            
-          
-         
         </Toolbar>
       </Container>
     </AppBar>

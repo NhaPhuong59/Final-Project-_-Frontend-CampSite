@@ -1,6 +1,6 @@
 
     .confirmation {
-        // border-top: 1px solid lightgray;
+        border-top: 2px double lightgray;
         height: 300px;
         display: flex;
         justify-content: center;
@@ -15,9 +15,10 @@
             }
         }
         .button {
-            background-color: rgba(86, 186, 245, 0.377);
-            color:rgb(16, 142, 245);
+            background-color: #07A4B5;
+            color:#fff;
             font-weight: 600;
+            font-size: 1.2rem;
         }
     }
 

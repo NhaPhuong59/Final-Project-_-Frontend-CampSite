@@ -1,24 +1,26 @@
-.app_bar {
-    border-bottom: 1px solid lightgray;
+// .app_bar {
+//     border-bottom: 1px solid lightgray;
+//     position: sticky;
+//     background:none;
     
-}
-// .header_center{
-//     display: flex;
-//     flex: 1;
-//     align-items: center;
-//     max-width: fit-content;
-//     padding: 10px;
-//     height: 30px;
-//     border: 1px solid lightgray;
-//     border-radius: 999px;
-//     margin-right: 10%;
-//     input {
-//         border: none;
-//         /* width: 250px; */
-//         padding: 10px;
-//         outline: none;
-//     }
 // }
+.app_bar {
+    .logo_name{
+        font-size: 3rem;
+        font-family: GT-Super-Display-Trial-Regular;
+        color: #fff;
+        text-shadow: 4px 4px 0px #07A4B5, 7px 9px 0px rgba(0, 0, 0, 0.2);
+    }
+    .login_btn {
+        color: #FFF;
+        font-size: 1.5rem;
+        font-family: GT-Super-Display-Trial-Regular;
+
+    }
+    .login_btn:hover {
+        border-bottom: .1rem solid white
+    }
+}
 .header_right{
     display: flex;
     align-items: center;
@@ -36,7 +38,6 @@
 .header_right_2{
     display: flex;
     align-items: center;
-   /* justify-content: space-between;*/
     border: 1px solid lightgray;
     border-radius: 999px;
     padding: 2px 7px 2px 7px;
