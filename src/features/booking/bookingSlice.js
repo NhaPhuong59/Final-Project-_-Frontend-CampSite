@@ -6,9 +6,8 @@ const initialState = {
   isLoading: false,
   error: null,
   bookingList: [],
-  success:""
+  success: "",
 };
-console.log("error", initialState.error)
 const slice = createSlice({
   name: "booking",
   initialState,
@@ -21,25 +20,31 @@ const slice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    createBookingSuccess(state,action) {
+    createBookingSuccess(state, action) {
       state.isLoading = false;
       state.error = null;
-      state.success= action.payload
+      state.success = action.payload;
     },
     confirmBookingSuccess(state) {
       state.isLoading = false;
-      state.error = null},
-
-      getAllBookingSuccess(state, action) {
-        state.isLoading = false;
       state.error = null;
-      state.bookingList= action.payload
-      },
-      getBookingComfirmSuccess(state, action){
-        state.isLoading = false;
-        state.error = null;
-        state.bookingList= action.payload
-      }
+    },
+
+    getAllBookingSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.bookingList = action.payload;
+    },
+    getBookingComfirmSuccess(state, action) {
+      state.isLoading = false;
+      state.error = null;
+      state.bookingList = action.payload;
+    },
+    getOwnTripSuccess(state,action){
+      state.isLoading = false;
+      state.error = null;
+      state.bookingList = action.payload;
+    }
   },
 });
 
@@ -64,40 +69,45 @@ export const confirmBooking =
   async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      console.log('confirmBooking', 'token', token)
       await apiService.put(`/booking/confirm/${token}`);
       dispatch(slice.actions.confirmBookingSuccess());
     } catch (error) {
-      console.log(error);
       dispatch(slice.actions.hasError(error.response.data.errors.message));
-      console.log(error.response.data.errors.message)
-      
-      console.log("error", initialState.error)
-
       toast.error(error.message);
     }
   };
 
-  export const getAllBooking = ({campId}) => async (dispatch)=>{
+export const getAllBooking =
+  ({ campId }) =>
+  async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      console.log("campId frontend", campId)
-      const res = await apiService.get(`/booking/allBooking/${campId.id}`)
-      dispatch(slice.actions.getAllBookingSuccess(res.data.data))
+      const res = await apiService.get(`/booking/allBooking/${campId.id}`);
+      dispatch(slice.actions.getAllBookingSuccess(res.data.data));
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));
       toast.error(error.message);
     }
-  }
+  };
 
-  export const getBookingSuccess = (campId) => async (dispatch)=>{
-    dispatch(slice.actions.startLoading());
-    try {
-      const res = await apiService.get(`/booking/bookingSuccess/${campId}`)
-      dispatch(slice.actions.getBookingComfirmSuccess(res.data.data))
-    } catch (error) {
-      dispatch(slice.actions.hasError(error.message));
-      toast.error(error.message);
-    }
+export const getBookingSuccess = (campId) => async (dispatch) => {
+  dispatch(slice.actions.startLoading());
+  try {
+    const res = await apiService.get(`/booking/bookingSuccess/${campId}`);
+    dispatch(slice.actions.getBookingComfirmSuccess(res.data.data));
+  } catch (error) {
+    dispatch(slice.actions.hasError(error.message));
+    toast.error(error.message);
   }
-  
+};
+
+export const userGetOwnTrip = ({user}) => async (dispatch) => {
+  dispatch(slice.actions.startLoading());
+  try {
+    const res = await apiService.get("/booking/ownTrip", {email: user.email})
+    dispatch(slice.actions.getOwnTripSuccess(res.data.data));
+  } catch (error) {
+    dispatch(slice.actions.hasError(error.message));
+    toast.error(error.message);
+  }
+};
