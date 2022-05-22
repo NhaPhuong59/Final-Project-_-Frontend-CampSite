@@ -14,6 +14,7 @@ import Logo from "../../images/logo5.png";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
 
+
 const PartnerHeader = () => {
   const navigate = useNavigate();
   const { user, logout } = useAuth();
@@ -111,8 +112,8 @@ const PartnerHeader = () => {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-            <IconButton onClick={handleOpenUserMenu} sx={{p: 0, border: "1px solid lightGrey", width:"1.5em", height:"1.5em" }} >
-                <AccountCircleIcon fontSize="3"/>
+            <IconButton onClick={handleOpenUserMenu} sx={{color:"#FFF",p: 0, border: "1px solid lightGrey", width:"1.5em", height:"1.5em" }} >
+                <AccountCircleIcon fontSize="large" />
               </IconButton>
             </Tooltip>
             <Menu

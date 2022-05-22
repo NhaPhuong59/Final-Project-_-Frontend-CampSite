@@ -8,13 +8,11 @@ import Menu from "@mui/material/Menu";
 import Container from "@mui/material/Container";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Logo from "../../images/logo5.png";
 import useAuth from "../../hooks/useAuth";
 import { Divider } from "@mui/material";
-import SearchIcon from "@material-ui/icons/Search";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import LoginIcon from "@mui/icons-material/Login";
 import "./styles.scss";
 
 const MainHeader = () => {
@@ -106,7 +104,7 @@ const MainHeader = () => {
                 alignItems: "center",
               }}
             >
-              <img src={Logo} alt="logo" height={80} />
+              <img src={Logo} alt="logo" height={80}/>
               <div className="logo_name">noknok</div>
             </Box>
           </Typography>
@@ -136,14 +134,14 @@ const MainHeader = () => {
               <Tooltip title="Open settings">
                 <IconButton
                   onClick={handleOpenUserMenu}
-                  sx={{
+                  sx={{color:"#FFF",
                     p: 0,
                     border: "1px solid lightGrey",
                     width: "1.5em",
                     height: "1.5em",
                   }}
                 >
-                  <AccountCircleIcon fontSize="3" />
+                  <AccountCircleIcon fontSize="large" />
                 </IconButton>
               </Tooltip>
               <Menu
@@ -178,7 +176,7 @@ const MainHeader = () => {
                 <Divider sx={{ borderStyle: "dashed" }} />
 
                 <MenuItem>
-                  <Typography textAlign="center">Account Settings</Typography>
+                  <Typography textAlign="center" component="a" href={`/partner/${user._id}`} sx={{textDecoration:"none", color:"#000"}}>Account Settings</Typography>
                 </MenuItem>
                 {renderLogout}
               </Menu>

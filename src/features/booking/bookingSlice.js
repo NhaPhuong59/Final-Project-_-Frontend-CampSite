@@ -6,6 +6,7 @@ const initialState = {
   isLoading: false,
   error: null,
   bookingList: [],
+  success:""
 };
 console.log("error", initialState.error)
 const slice = createSlice({
@@ -20,9 +21,10 @@ const slice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
-    createBookingSuccess(state) {
+    createBookingSuccess(state,action) {
       state.isLoading = false;
       state.error = null;
+      state.success= action.payload
     },
     confirmBookingSuccess(state) {
       state.isLoading = false;
@@ -48,8 +50,8 @@ export const createBooking =
   async (dispatch) => {
     dispatch(slice.actions.startLoading());
     try {
-      await apiService.post(`/booking/${campId.id}`, bookingInfo);
-      dispatch(slice.actions.createBookingSuccess());
+      const res = await apiService.post(`/booking/${campId.id}`, bookingInfo);
+      dispatch(slice.actions.createBookingSuccess(res.data.success));
       toast.success("Your booking successfully");
     } catch (error) {
       dispatch(slice.actions.hasError(error.message));

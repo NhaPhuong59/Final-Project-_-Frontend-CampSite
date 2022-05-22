@@ -1,6 +1,6 @@
 import { TabContext, TabList, TabPanel } from '@mui/lab'
 import { Box, Divider, Paper, Tab, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import React, {useEffect, useState} from 'react'
+import React, {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import { getCampOnw } from '../camp/campSlice'
@@ -22,42 +22,42 @@ useEffect(() => {
   dispatch(getCampOnw({authorId}))
 }, [authorId, dispatch]);
 
-const handleChange = (event, newValue) => {
-  setValue(newValue);
+const handleChange = (e) => {
+  // console.log("newValue",newValue)
+  console.log("event",e)
+  // setValue(newValue);
 };
 const handleBookingList = async(campId)=>{
   console.log(campId)
   dispatch(getBookingSuccess(campId))
 }
-
   return (
     <div>
       <Box 
       sx={{ flexGrow: 1, display: 'flex', height: "60vh" }}
       >
-      <TabContext value={value.toString()}>
+      <TabContext value={value}>
         <Box margin="24px 10px 0">
           <TabList 
           sx={{ boxShadow:"2px 1px 8px lightgray",borderRadius:"5px",backgroundColor:"#FFF"}}
-          onChange={handleChange} 
+          // onChange={(e)=>handleChange(e)} 
           aria-label="lab API tabs example"
           orientation="vertical"
           >
             {camps.map((camp, index)=>(
-              <React.Fragment>
-              <Tab key={camp._id} label={camp.title} value={index.toString()} 
-              sx={{  }}
+              <div key={camp._id}>
+              <Tab  label={camp.title} value={index.toString()} 
               onClick={()=>handleBookingList(camp._id)}
               />
               <Divider/>
-              </React.Fragment>
+              </div>
             ))}
           </TabList>
         </Box>
         {camps.map((camp, index)=>(
           <TabPanel value={index.toString()} key={camp._id} sx={{bgcolor: "#c9eff9"}}>
+            {console.log("index",)}
 <div>
-
             <TableContainer component={Paper} >
       <Table sx={{ minWidth: 650}} aria-label="simple table">
         <TableHead >
@@ -82,8 +82,8 @@ const handleBookingList = async(campId)=>{
               <TableCell align="right">{booking.guest.email}</TableCell>
               <TableCell align="right">{booking.startDate}</TableCell>
               <TableCell align="right">{booking.endDate}</TableCell>
-              <TableCell align="right">0</TableCell>
-              <TableCell align="right">0</TableCell>
+              <TableCell align="right">{booking.guestNumber}</TableCell>
+              <TableCell align="right">{booking.totalPrice}</TableCell>
             </TableRow>
           ))}
         </TableBody>

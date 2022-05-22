@@ -63,7 +63,7 @@ export default slice.reducer;
 
 export const getListCamp = (payload) => async (dispatch) => {
   console.log("getListCamp", "action", payload);
-  const params = _pick(payload, "startDate", "endDate", "limit", "page");
+  const params = _pick(payload, "startDate", "endDate", "limit", "page", "camp", "maxPrice", "minPrice");
   console.log('params', params)
   dispatch(slice.actions.startLoading());
   try {

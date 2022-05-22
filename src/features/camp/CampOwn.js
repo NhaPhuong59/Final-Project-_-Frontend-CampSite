@@ -27,11 +27,11 @@ function CampOwn() {
     }
     getListCampOwn()
   }, [authorId]);
-console.log("campOwn",campOwn)
   return (
     <div>
       {campOwn.map((camp)=>(
         <CampOwnCard 
+        key={camp._id}
         id={camp._id}
         images = {camp.images}
         location = {camp.address}
