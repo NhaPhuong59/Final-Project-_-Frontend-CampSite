@@ -62,9 +62,7 @@ const slice = createSlice({
 export default slice.reducer;
 
 export const getListCamp = (payload) => async (dispatch) => {
-  console.log("getListCamp", "action", payload);
   const params = _pick(payload, "startDate", "endDate", "limit", "page", "camp", "maxPrice", "minPrice");
-  console.log('params', params)
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get("/camps", { params });
@@ -78,7 +76,6 @@ export const getListCamp = (payload) => async (dispatch) => {
 export const createCamp =
   ({ dataCreated }) =>
   async (dispatch) => {
-    console.log("dataCreated", dataCreated);
     dispatch(slice.actions.startLoading());
     try {
       await apiService.post("/camps", dataCreated);
@@ -91,11 +88,9 @@ export const createCamp =
   };
 
 export const getDetailCamp = ({campId}) => async (dispatch)=>{
-  console.log(campId.id)
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get(`/camps/camp/${campId.id}`)
-    console.log("response",response.data)
     dispatch(slice.actions.getDetailCampSuccess(response.data.camp))
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
@@ -119,7 +114,6 @@ export const getCampOnw= ({authorId})=> async(dispatch)=>{
   dispatch(slice.actions.startLoading());
   try {
     const res = await apiService(`/camps/author/${authorId.id}`)
-    console.log("getCampOnw",res.data.data )
     dispatch(slice.actions.getCampOnwSuccess(res.data.data))
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));

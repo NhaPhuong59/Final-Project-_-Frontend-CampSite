@@ -65,13 +65,10 @@ function AuthProvider({ children }) {
     const initialize = async () => {
       try {
         const accessToken = window.localStorage.getItem("accessToken");
-        console.log("accessToken",accessToken)
-        console.log("isvaldToken",isValidToken(accessToken))
         if (accessToken && isValidToken(accessToken)) {
           setSession(accessToken);
 
           const response = await apiService.get("/users/currentUser");
-          console.log("currentUser", response.data)
           const user = response.data.success;
 
           dispatch({
@@ -105,18 +102,14 @@ function AuthProvider({ children }) {
 
 
   const login = async ({ email, password }, callback) => {
-    console.log("hello2")
-
     const response = await apiService.post("/users/login", { email, password });
     const { user, accessToken } = response.data.data;
-    console.log(response)
 
     setSession(accessToken);
     dispatch({
       type: LOGIN_SUCCESS,
       payload: { user },
     });
-    console.log("logincontext", user)
     callback(user);
   };
 
@@ -126,10 +119,7 @@ function AuthProvider({ children }) {
       email,
       password,
     });
-    console.log(response.data)
-    console.log(response.data.data)
     const { user, accessToken } = response.data.data;
-    console.log(accessToken)
     setSession(accessToken);
     dispatch({
       type: REGISTER_SUCCESS,

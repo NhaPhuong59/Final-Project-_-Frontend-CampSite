@@ -10,9 +10,6 @@ function CampCard({camp, queryParams}) {
     const navigate = useNavigate()
     const {title, images, _id, price} = camp
 
-    // const handleClick=()=>{
-    //     navigate(`/camp/${_id}?startDate=${queryParams.startDate}&endDate=${queryParams.endDate}`)
-    // }
   return (
     <Grid item xs={12} md={6} lg={4} key={_id}>
       <Link href={`/camp/${_id}?startDate=${queryParams.startDate}&endDate=${queryParams.endDate}`} sx={{textDecoration:"none"}}>

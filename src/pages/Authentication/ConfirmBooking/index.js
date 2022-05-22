@@ -7,9 +7,7 @@ import "./styles.scss";
 
 function ConfirmBooking() {
   const { error } = useSelector((state) => state.booking);
-  console.log("error", error);
   const { token } = useParams();
-  console.log("token", token);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(confirmBooking({ token }));

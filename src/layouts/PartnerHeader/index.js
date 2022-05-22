@@ -26,7 +26,6 @@ const PartnerHeader = () => {
   };
 
   const handleCloseNavMenu = (event) => {
-    // setAnchorElNav(null);
   };
 
   const handleCloseUserMenu = () => {

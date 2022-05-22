@@ -28,7 +28,7 @@ import FactCheckOutlinedIcon from "@mui/icons-material/FactCheckOutlined";
 import PaidOutlinedIcon from "@mui/icons-material/PaidOutlined";
 import EmojiEmotionsOutlinedIcon from "@mui/icons-material/EmojiEmotionsOutlined";
 import DoubleArrowOutlinedIcon from "@mui/icons-material/DoubleArrowOutlined";
-import BookingSearch from "../../../BookingSearch";
+import BookingSearch from "../../../components/BookingSearch";
 
 const BookingSchema = Yup.object().shape({
   guestName: Yup.string().required("Name is required"),

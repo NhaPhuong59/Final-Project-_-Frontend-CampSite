@@ -14,21 +14,16 @@ const dispatch = useDispatch()
 const {camps} = useSelector((state)=>state.camp)
 const {bookingList} = useSelector((state)=>state.booking)
 
-console.log("camps",camps)
-
 const [value, setValue] = React.useState("0");
 
 useEffect(() => {
   dispatch(getCampOnw({authorId}))
 }, [authorId, dispatch]);
 
-const handleChange = (e) => {
-  // console.log("newValue",newValue)
-  console.log("event",e)
+const handleChange = (e, newValue) => {
   // setValue(newValue);
 };
 const handleBookingList = async(campId)=>{
-  console.log(campId)
   dispatch(getBookingSuccess(campId))
 }
   return (

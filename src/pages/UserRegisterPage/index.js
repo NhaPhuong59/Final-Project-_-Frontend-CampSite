@@ -19,7 +19,6 @@ import { FormProvider, FTextField } from "../../components/form";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import apiService from "../../utils/apiService";
 
 const RegisterSchema = Yup.object().shape({
   userName: Yup.string().required("Name is required"),
@@ -58,11 +57,9 @@ function UserRegisterPage() {
   const onSubmit = async (data) => {
     const { userName, email, password } = data;
     try {
-      // const res = await apiService.post("/users",{userName,email,password})
       const res = await auth.register({ userName, email, password }, () => {
         navigate("/", { replace: true });
       });
-      console.log(res.data)
     } catch (error) {
       reset();
       setError("responseError", error);
