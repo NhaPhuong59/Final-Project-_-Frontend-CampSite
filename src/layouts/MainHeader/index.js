@@ -176,7 +176,7 @@ const MainHeader = () => {
                 <Divider sx={{ borderStyle: "dashed" }} />
 
                 <MenuItem>
-                  <Typography textAlign="center" component="a" href={`/partner/${user._id}`} sx={{textDecoration:"none", color:"#000"}}>Account Settings</Typography>
+                  <Typography textAlign="center" component="a" href={(user.role==="partner")?(`/partner/${user._id}`):(`/user/${user._id}`)} sx={{textDecoration:"none", color:"#000"}}>Account Settings</Typography>
                 </MenuItem>
                 {renderLogout}
               </Menu>
