@@ -1,18 +1,17 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
-import Layout from "./layouts/Layout";
-import DetailPage from "./pages/DetailPage";
-import HomePage from "./pages/HomePage";
+import { AuthProvider } from "./contexts/AuthContext";
+import Router from "./routes";
+import { BrowserRouter } from "react-router-dom";
+
 
 function App() {
   return (
     <React.Fragment>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
-          <Route path="/detail" element={<DetailPage />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+      </AuthProvider>
     </React.Fragment>
   );
 }

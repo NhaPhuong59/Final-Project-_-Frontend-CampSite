@@ -1,0 +1,9 @@
+.container_table{
+    background-image: linear-gradient(180deg, #ffb95e 1%, #c9eff9, #f9fcfd);
+    padding-top: 150px;
+    display: flex;
+    justify-content: center;
+    .table{
+        max-width: 150vh;
+    }
+}

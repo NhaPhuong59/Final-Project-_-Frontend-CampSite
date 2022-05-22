@@ -1,0 +1,92 @@
+.campOwn {
+  display: flex;
+  position: relative;
+  margin: 20px;
+  padding: 20px;
+  border: 1px solid lightgray;
+  border-radius: 1rem;
+}
+
+.campOwn:hover {
+  opacity: 0.8;
+}
+
+.campOwn > img {
+  height: 200px;
+  width: 350px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.campOwn__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  height: 100px;
+  max-height: 80px;
+}
+
+.campOwn__edit {
+  position: absolute;
+  top: 20px;
+  right: 40px;
+  border: 1px solid gray;
+  border-radius: 0.2rem;
+  cursor: pointer;
+}
+
+.campOwn__infoTop {
+  width: 40vw;
+}
+
+.campOwn__infoTop > h3 {
+  font-weight: 300;
+  margin-top: 10px;
+}
+
+.campOwn__infoTop > p {
+  margin-top: 10px;
+  font-size: 13px;
+  color: gray;
+}
+
+.campOwn__infoBottom {
+  display: flex;
+  justify-content: space-between;
+}
+
+.campOwn__star {
+  color: red;
+}
+
+.campOwn__stars {
+  display: flex;
+  align-items: center;
+}
+
+.campOwn__price > p {
+  text-align: right;
+}
+
+.campOwn__price {
+  position: absolute;
+  bottom: 20px;
+  right: 30px;
+}
+
+.form_edit_camp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 1200px;
+  max-width: 1200px;
+  background-color: whitesmoke;
+  box-shadow: 24px;
+  padding: 100px 50px;
+  scroll-behavior: auto;
+  scroll-behavior: smooth;
+  max-height: calc(100vh - 210px);
+  overflow-y: auto;
+}

@@ -1,0 +1,24 @@
+
+    .confirmation {
+        border-top: 2px double lightgray;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .message {
+            font-size: 2rem;
+            .error {
+                color: red
+            }
+            .success {
+                color: green
+            }
+        }
+        .button {
+            background-color: #07A4B5;
+            color:#fff;
+            font-weight: 600;
+            font-size: 1.2rem;
+        }
+    }
+
