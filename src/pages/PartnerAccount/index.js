@@ -7,12 +7,10 @@ import { capitalCase } from "change-case";
 import UserBooking from '../../features/booking/UserBooking';
 import CampOwn from '../../features/camp/CampOwn';
 import CreateCamp from '../../features/camp/CreateCamp';
-import { useNavigate } from 'react-router-dom';
 
 
 function PartnerAccount() {
   const [currentTab, setCurrentTab] = useState("user_booking");
-  const navigate = useNavigate();
 
 
 
@@ -23,17 +21,17 @@ function PartnerAccount() {
   const PARTNER_TABS = [
     {
       value: "user_booking",
-      icon: <EventAvailableOutlinedIcon sx={{ fontSize: 24 }} />,
+      icon: <EventAvailableOutlinedIcon />,
       component: <UserBooking />,
     },
     {
       value: "my_camp",
-      icon: <DeckOutlinedIcon sx={{ fontSize: 24 }} />,
+      icon: <DeckOutlinedIcon />,
       component: <CampOwn />,
     },
     {
       value: "create_camp",
-      icon: <CreateOutlinedIcon sx={{ fontSize: 24 }} />,
+      icon: <CreateOutlinedIcon />,
       component: <CreateCamp />,
     }
   ];

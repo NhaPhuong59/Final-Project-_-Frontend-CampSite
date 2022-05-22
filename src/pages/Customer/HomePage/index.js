@@ -1,10 +1,5 @@
-import {
-  Box,
-  Container,
-  Grid,
-  Pagination,
-} from "@mui/material";
-import React, { useRef, useEffect } from "react";
+import { Box, Button, Container, Grid, Pagination } from "@mui/material";
+import React, { useRef, useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getListCamp } from "../../../features/camp/campSlice";
@@ -12,11 +7,12 @@ import useEqual from "../../../hooks/useEqual";
 import "./styles.scss";
 import Search from "../../../components/Search";
 import CampCard from "../../../features/camp/CampCard";
-import ArrowDropDownCircleOutlinedIcon from '@mui/icons-material/ArrowDropDownCircleOutlined';
+import ArrowDropDownCircleOutlinedIcon from "@mui/icons-material/ArrowDropDownCircleOutlined";
 import { scroller } from "react-scroll";
 
 function HomePage() {
   const { camps, totalPage } = useSelector((state) => state.camp);
+  const [showSearch, setShowSearch] = useState(false);
   const dispatch = useDispatch();
 
   const [query, setQuery] = useSearchParams({
@@ -25,8 +21,8 @@ function HomePage() {
     camp: "",
     page: 1,
     limit: 9,
-    minPrice:"",
-    maxPrice:""
+    minPrice: "",
+    maxPrice: "",
   });
   const queryParams = useEqual({
     startDate: query.get("startDate"),
@@ -36,9 +32,8 @@ function HomePage() {
     limit: query.get("limit"),
     minPrice: query.get("minPrice"),
     maxPrice: query.get("maxPrice"),
-
   });
-
+console.log('queryParams', queryParams);
   const myRef = useRef(null);
 
   const scrollToSection = () => {
@@ -63,22 +58,51 @@ function HomePage() {
           <div className="title_wellcome">Wellcome to Nok Nok!</div>
         </div>
         <div className="banner_image"></div>
-        <div className="banner_scroll"  onClick={scrollToSection}><ArrowDropDownCircleOutlinedIcon fontSize="large" className="icon_drop"/></div>
+        <div className="banner_scroll" onClick={scrollToSection}>
+          <ArrowDropDownCircleOutlinedIcon
+            fontSize="large"
+            className="icon_drop"
+          />
+        </div>
       </div>
-      <div className="home_main_section scrollTo">
-      <Container maxWidth="xl" >
+      {/* <div className="home_main_section scrollTo"> */}
+      <Container maxWidth="xl" className="scrollTo">
         <Grid container sx={{ mt: "30px" }}>
-          <Grid item xs={3.5}>
-            <Search setQuery={setQuery} queryParams={queryParams} />
+          <Grid item xs={12} md={3.5}>
+            <div className="search_1">
+              <Search setQuery={setQuery} queryParams={queryParams} />
+            </div>
+            <div className="search_2">
+              <div className="banner__search">
+                <Button
+                  onClick={() => setShowSearch(!showSearch)}
+                  className="banner__searchButton"
+                  variant="outlined"
+                >
+                  {showSearch ? "Hide" : "Search"}
+                </Button>
+                <div style={{ display: "flex", justifyContent: "center" }}>
+                  {showSearch && (
+                    <Search setQuery={setQuery} queryParams={queryParams} />
+                  )}
+                </div>
+              </div>
+            </div>
           </Grid>
-          <Grid item xs={8.5}>
-            <Box className="listCamp" ref={myRef}>
+          <Grid item xs={12} md={8.5} className="camp-list-container">
+            {/* <Box className="listCamp" ref={myRef}> */}
               <Grid container spacing={3}>
-              {camps.map((camp) => (
-                <CampCard camp={camp} queryParams={queryParams} />
-              ))}
+                {camps.map((camp) => (
+                  <Grid item key={camp._id} xs={6} md={4} lg={4} className="grid_card">
+                  <CampCard
+                    // key={camp._id}
+                    camp={camp}
+                    queryParams={queryParams}
+                  />
+                 </Grid>
+                ))}
               </Grid>
-            </Box>
+            {/* </Box> */}
             <Box
               sx={{
                 display: "flex",
@@ -90,14 +114,14 @@ function HomePage() {
               <Pagination
                 count={totalPage}
                 page={query.page}
-                onChange={(e, value) =>setQuery({...query, page:value})}
+                onChange={(e, value) => setQuery({ ...query, page: value })}
               />
             </Box>
           </Grid>
         </Grid>
       </Container>
-      </div>
     </div>
+    // </div>
   );
 }
 

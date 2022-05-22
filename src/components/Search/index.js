@@ -49,8 +49,8 @@ function Search({ setQuery, queryParams}) {
       label: "0",
     },
     {
-      value: 200,
-      label: '200',
+      value: 500,
+      label: '500',
     },
   ]
   console.log("Search", "queryParams", queryParams);
@@ -67,31 +67,24 @@ function Search({ setQuery, queryParams}) {
         ranges={[selectionRange]}
         onChange={handleSelect}
         minDate={new Date()}
-        // showPreview={false}
-        shownDate={false}
       />
       <h3>
         Number of guests 
         <input min={0} defaultValue={2} type="number" className="num_guests"/>
         <PeopleIcon />
       </h3>
-      {/* <input min={0} defaultValue={2} type="number" className="input" /> */}
       <h3 style={{alignItems:"flex-start"}}>Price 
       <Box sx={{ width: 200, margin: "auto"}}>
       <Slider 
       value={maxPrice}
-      // defaultValue={100} 
       aria-label="Default" 
       valueLabelDisplay="auto" 
       marks={marks}
       onChange={handleChange}
-      max="200"
+      max="500"
       sx={{color:"#07A4B5" }}
       />
     </Box></h3>
-      {/* <button className="search_btn">
-        Search Camp
-      </button> */}
     </div>
   );
 }

@@ -2,11 +2,9 @@ import React from 'react';
 import './styles.scss';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import StarIcon from "@material-ui/icons/Star";
-import { Box, Container, Divider, Modal, Paper, Stack } from '@mui/material';
-import { FormProvider, FTextField } from '../form';
-import { LoadingButton } from '@mui/lab';
-import FTextarea from '../form/FTextarea';
-import ModalEditCamp from '../ModalEditCamp';
+import { Box, Divider, Modal} from '@mui/material';
+import ModalEditCamp from '../../features/camp/ModalEditCamp';
+
 
 function CampOwnCard({
     id,
@@ -14,9 +12,7 @@ function CampOwnCard({
     location,
     title,
     description,
-    rating,
     price,
-    // total,
 }) {
     const [open, setOpen] = React.useState(false);
     const handleEdit = () => setOpen(true)
@@ -36,15 +32,8 @@ function CampOwnCard({
                 </div>
 
                 <div className="campOwn__infoBottom">
-                    <div className="campOwn__stars">
-                        <StarIcon className="campOwn__star" />
-                        <p>
-                            <strong>{rating}</strong>
-                        </p>
-                    </div>
                     <div className='campOwn__price'>
                         <h2>${price}</h2>
-                        {/* <p>{total}</p> */}
                     </div>
                 </div>
             </div>
@@ -62,7 +51,6 @@ function CampOwnCard({
           addressText = {location.addressText}
           addressUrl = {location.addressUrl}
           title = {title}
-          rating = {rating}
           price = {price}
           description = {description}
           setOpen = {setOpen}

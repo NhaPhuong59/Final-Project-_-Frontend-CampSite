@@ -72,7 +72,7 @@ function AuthProvider({ children }) {
 
           const response = await apiService.get("/users/currentUser");
           console.log("currentUser", response.data)
-          const user = response.data;
+          const user = response.data.success;
 
           dispatch({
             type: INITIALIZE,
