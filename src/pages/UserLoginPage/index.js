@@ -48,29 +48,19 @@ function UserLoginPage() {
     setError,
     formState: { errors, isSubmitting },
   } = methods;
-  console.log("hello1")
 
   const onSubmit = async (data) => {
     const from = location.state?.from?.pathname || "/";
     let { email, password } = data;
-    console.log("hello")
     try {
-      console.log("hehehe")
       const res = await auth.login({ email, password }, (user) => {
-        console.log(user)
-        // navigate(from, { replace: true });
         if (user.role==="user"){
           navigate(from, {replace: true})
         }else if (user.role ==="partner"){
           navigate(`/partner/${user._id}`,{ replace: true})
-      console.log("hehehe123")
         }
 
       });
-      console.log(res.data)
-      // const res = await apiService.post("/users/login", {email, password})
-      // console.log(res.data)
-      // const{user} = res.data.data
     } catch (error) {
       reset();
       setError("responseError", error);

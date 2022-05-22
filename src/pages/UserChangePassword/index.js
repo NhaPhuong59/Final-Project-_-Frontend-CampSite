@@ -34,7 +34,7 @@ const defaultValues = {
 };
 
 function UserChangePassword() {
-    const params = useParams()
+  const params = useParams();
   const navigate = useNavigate();
   const auth = useAuth();
   const [showPassword, setShowPassword] = useState(false);
@@ -55,27 +55,28 @@ function UserChangePassword() {
   const onSubmit = async (data) => {
     const { newPassword } = data;
     try {
-      const response = await apiService.put(`/users/reset/${params.token}`,{newPassword})
-      console.log("data res",response.data.data)
-      const {email} = response.data.data
+      const response = await apiService.put(`/users/reset/${params.token}`, {
+        newPassword,
+      });
+      const { email } = response.data.data;
 
-      if(email){
-          try {
-              const res = await auth.login({ email, password: newPassword }, (user) => {
-                console.log(user)
-                if (user.role==="user"){
-                  navigate("/", {replace: true})
-                }else if (user.role ==="partner"){
-                  navigate(`/partner/${user._id}`,{ replace: true})
-              console.log("hehehe123")
-                }})
-        
-              console.log(res.data)
-              
-          } catch (error) {
-            reset();
-            setError("responseError", error);
-          }}
+      if (email) {
+        try {
+          const res = await auth.login(
+            { email, password: newPassword },
+            (user) => {
+              if (user.role === "user") {
+                navigate("/", { replace: true });
+              } else if (user.role === "partner") {
+                navigate(`/partner/${user._id}`, { replace: true });
+              }
+            }
+          );
+        } catch (error) {
+          reset();
+          setError("responseError", error);
+        }
+      }
     } catch (error) {
       reset();
       setError("responseError", error);
@@ -83,71 +84,73 @@ function UserChangePassword() {
   };
 
   return (
-    <Box sx={{background:"#ffb95e", height:"80vh"}} >
-    <Container maxWidth="xs" sx={{background:"#fff", padding:"5rem"}}>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={3}>
-          {!!errors.responseError && (
-            <Alert severity="error">{errors.responseError.message}</Alert>
-          )}
-          <Alert severity="info">
-            Enter your new password
-          </Alert>
+    <Box sx={{ background: "#ffb95e", height: "80vh" }}>
+      <Container maxWidth="xs" sx={{ background: "#fff", padding: "5rem" }}>
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing={3}>
+            {!!errors.responseError && (
+              <Alert severity="error">{errors.responseError.message}</Alert>
+            )}
+            <Alert severity="info">Enter your new password</Alert>
 
-          <FTextField
-            name="newPassword"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-          <FTextField
-            name="passwordConfirmation"
-            label="Password Confirmation"
-            type={showPasswordConfirmation ? "text" : "password"}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() =>
-                      setShowPasswordConfirmation(!showPasswordConfirmation)
-                    }
-                    edge="end"
-                  >
-                    {showPasswordConfirmation ? (
-                      <VisibilityIcon />
-                    ) : (
-                      <VisibilityOffIcon />
-                    )}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
+            <FTextField
+              name="newPassword"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                    >
+                      {showPassword ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            <FTextField
+              name="passwordConfirmation"
+              label="Password Confirmation"
+              type={showPasswordConfirmation ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() =>
+                        setShowPasswordConfirmation(!showPasswordConfirmation)
+                      }
+                      edge="end"
+                    >
+                      {showPasswordConfirmation ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
 
-          <LoadingButton
-            fullWidth
-            size="large"
-            type="submit"
-            variant="contained"
-            loading={isSubmitting}
-            sx={{background:"#07A4B5"}}
-          >
-            Change Password
-          </LoadingButton>
-        </Stack>
-      </FormProvider>
-    </Container>
+            <LoadingButton
+              fullWidth
+              size="large"
+              type="submit"
+              variant="contained"
+              loading={isSubmitting}
+              sx={{ background: "#07A4B5" }}
+            >
+              Change Password
+            </LoadingButton>
+          </Stack>
+        </FormProvider>
+      </Container>
     </Box>
   );
 }

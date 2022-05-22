@@ -1,7 +1,6 @@
 import React from 'react';
 import './styles.scss';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
-import StarIcon from "@material-ui/icons/Star";
 import { Box, Divider, Modal} from '@mui/material';
 import ModalEditCamp from '../../features/camp/ModalEditCamp';
 

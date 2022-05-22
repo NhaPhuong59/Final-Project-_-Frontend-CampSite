@@ -7,9 +7,6 @@ import "./styles.scss"
 function BlankLayout() {
   return (
     <React.Fragment>
-      {/* <Box height={250} sx={{ display: "flex", justifyContent:"center", alignItems:"center"}}>
-        <Link to="/"><img src={Logo} alt="logo" height={180} /></Link>
-      </Box> */}
       <Box
               height={250}
               sx={{

@@ -1,5 +1,5 @@
 import { Box, Button, Container, Grid, Pagination } from "@mui/material";
-import React, { useRef, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getListCamp } from "../../../features/camp/campSlice";
@@ -33,8 +33,6 @@ function HomePage() {
     minPrice: query.get("minPrice"),
     maxPrice: query.get("maxPrice"),
   });
-console.log('queryParams', queryParams);
-  const myRef = useRef(null);
 
   const scrollToSection = () => {
     scroller.scrollTo("scrollTo", {
@@ -48,7 +46,6 @@ console.log('queryParams', queryParams);
     dispatch(getListCamp({ ...queryParams }));
   }, [dispatch, queryParams]);
 
-  console.log("HomePage", "queryParams", queryParams);
   return (
     <div className="home">
       <div className="banner">
@@ -65,7 +62,6 @@ console.log('queryParams', queryParams);
           />
         </div>
       </div>
-      {/* <div className="home_main_section scrollTo"> */}
       <Container maxWidth="xl" className="scrollTo">
         <Grid container sx={{ mt: "30px" }}>
           <Grid item xs={12} md={3.5}>
@@ -90,19 +86,16 @@ console.log('queryParams', queryParams);
             </div>
           </Grid>
           <Grid item xs={12} md={8.5} className="camp-list-container">
-            {/* <Box className="listCamp" ref={myRef}> */}
               <Grid container spacing={3}>
                 {camps.map((camp) => (
                   <Grid item key={camp._id} xs={6} md={4} lg={4} className="grid_card">
                   <CampCard
-                    // key={camp._id}
                     camp={camp}
                     queryParams={queryParams}
                   />
                  </Grid>
                 ))}
               </Grid>
-            {/* </Box> */}
             <Box
               sx={{
                 display: "flex",
@@ -121,7 +114,6 @@ console.log('queryParams', queryParams);
         </Grid>
       </Container>
     </div>
-    // </div>
   );
 }
 

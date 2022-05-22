@@ -13,9 +13,6 @@ function CampsiteList({list, queryParams}) {
   return (
     
     <div className="campsite-list-container" >
-      {/* <ImageListItem key="Subheader" cols={2}> */}
-        {/* <ListSubheader component="div">CAMPS LIST</ListSubheader> */}
-      {/* </ImageListItem> */}
       <Grid container spacing={3}>
         {list.map(({ title, description, images, _id }) => (
           <Grid item xs={12} md={6} lg={4} key={_id}>
@@ -61,20 +58,6 @@ function CampsiteList({list, queryParams}) {
         ))}
       </Grid>
 
-      {/* <Box
-        sx={{
-          display: "flex",
-          justifyContent: "center",
-          mt: 3,
-          mb: 3,
-        }}
-      >
-        <Pagination
-          count={3}
-          page={1}
-          // onChange={(e, value) => setPage(value)}
-        />
-      </Box> */}
     </div>
   );
 }
