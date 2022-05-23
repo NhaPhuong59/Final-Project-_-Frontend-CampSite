@@ -41,7 +41,8 @@ function CreateCamp() {
   const { setValue, getValues, handleSubmit, reset } = methods;
 
   const handleImageChange = async (event) => {
-    const images = await Helper.uploadImage(event.target.files);
+    let images = await Helper.uploadImage(event.target.files);
+    images = images.map(Helper.imageUrl)
     setDisplayImages([...displayImages, ...images]);
     const oldImages = getValues("images");
     setValue("images", [...oldImages, ...images]);
