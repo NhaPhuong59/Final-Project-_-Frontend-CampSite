@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import CampOwnCard from '../../components/CampOwnCard';
 import apiService from '../../utils/apiService';
+import Helper from "../../utils/Helper";
 
 function CampOwn() {
   const authorId = useParams()
@@ -20,6 +21,9 @@ function CampOwn() {
     const getListCampOwn = async()=>{
       try {
         const res = await apiService.get(`/camps/author/${authorId.id}`)
+        res.data.data.forEach((camp) => {
+          camp.images = camp.images.map(Helper.imageUrl);
+        })
         setCampOwn(res.data.data)
       } catch (error) {
         console.log(error)

@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 import apiService from "../../utils/apiService";
 import _pick from "lodash/pick";
+import Helper from "../../utils/Helper";
 
 const initialState = {
   isLoading: false,
@@ -66,6 +67,9 @@ export const getListCamp = (payload) => async (dispatch) => {
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get("/camps", { params });
+    response.data.data.searchList.forEach((camp) => {
+      camp.images = camp.images.map(Helper.imageUrl);
+    })
     dispatch(slice.actions.getListCampSuccess(response.data.data));
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));
@@ -91,6 +95,7 @@ export const getDetailCamp = ({campId}) => async (dispatch)=>{
   dispatch(slice.actions.startLoading());
   try {
     const response = await apiService.get(`/camps/camp/${campId.id}`)
+    response.data.camp.images = response.data.camp.images.map(Helper.imageUrl);
     dispatch(slice.actions.getDetailCampSuccess(response.data.camp))
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));

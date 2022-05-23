@@ -13,6 +13,15 @@ const Helper = {
         return response.data.images;
       })
   },
+  imageUrl(image) {
+    if (image.startsWith('http://localhost:5000')) {
+      image = image.slice('http://localhost:5000'.length)
+    }
+    if (image.startsWith('/api/')) {
+      image = image.slice('/api'.length)
+    }
+    return process.env.REACT_APP_BASE_URL + image
+  }
 };
 
 export default Helper;
