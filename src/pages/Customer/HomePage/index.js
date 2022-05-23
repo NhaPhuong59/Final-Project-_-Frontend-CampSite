@@ -64,7 +64,7 @@ function HomePage() {
       </div>
       <Container maxWidth="xl" className="scrollTo">
         <Grid container sx={{ mt: "30px" }}>
-          <Grid item xs={12} md={3.5}>
+          <Grid item xs={12} md={3.5} className="grid_search">
             <div className="search_1">
               <Search setQuery={setQuery} queryParams={queryParams} />
             </div>
@@ -86,13 +86,13 @@ function HomePage() {
             </div>
           </Grid>
           <Grid item xs={12} md={8.5} className="camp-list-container">
-              <Grid container spacing={3}>
+              <Grid container spacing={3} className="grid_camps">
                 {camps.map((camp) => (
                   <Grid item key={camp._id} xs={6} md={4} lg={4} className="grid_card">
-                  <CampCard
-                    camp={camp}
-                    queryParams={queryParams}
-                  />
+                    <CampCard
+                      camp={camp}
+                      queryParams={queryParams}
+                    />
                  </Grid>
                 ))}
               </Grid>
