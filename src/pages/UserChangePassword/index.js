@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {
-  Link,
   Stack,
   Alert,
   IconButton,
@@ -12,7 +11,7 @@ import { LoadingButton } from "@mui/lab";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 
-import { useNavigate, Link as RouterLink, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import useAuth from "../../hooks/useAuth";
 import { FormProvider, FTextField } from "../../components/form";
@@ -62,7 +61,7 @@ function UserChangePassword() {
 
       if (email) {
         try {
-          const res = await auth.login(
+           await auth.login(
             { email, password: newPassword },
             (user) => {
               if (user.role === "user") {

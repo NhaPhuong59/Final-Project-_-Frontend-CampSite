@@ -21,7 +21,7 @@ useEffect(() => {
 }, [authorId, dispatch]);
 
 const handleChange = (e, newValue) => {
-  // setValue(newValue);
+  setValue(newValue);
 };
 const handleBookingList = async(campId)=>{
   dispatch(getBookingSuccess(campId))
@@ -35,7 +35,7 @@ const handleBookingList = async(campId)=>{
         <Box margin="24px 10px 0">
           <TabList 
           sx={{ boxShadow:"2px 1px 8px lightgray",borderRadius:"5px",backgroundColor:"#FFF"}}
-          // onChange={(e)=>handleChange(e)} 
+          onChange={(e)=>handleChange(e)} 
           aria-label="lab API tabs example"
           orientation="vertical"
           >

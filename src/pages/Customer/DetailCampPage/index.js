@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams, useSearchParams } from "react-router-dom";
 import { Button, Divider, Grid, Modal, Stack, Typography } from "@mui/material";
 import "./styles.scss";
-import { DateRange } from "react-date-range";
-import PeopleIcon from "@material-ui/icons/People";
 import * as React from "react";
 import * as Yup from "yup";
 import { FormProvider, FTextField } from "../../../components/form";

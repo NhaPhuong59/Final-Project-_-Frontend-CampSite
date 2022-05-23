@@ -19,7 +19,6 @@ import useAuth from "../../hooks/useAuth";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
-import apiService from "../../utils/apiService";
 
 const LoginSchema = Yup.object().shape({
   email: Yup.string().email("Invalid email").required("Email is required"),
@@ -53,7 +52,7 @@ function UserLoginPage() {
     const from = location.state?.from?.pathname || "/";
     let { email, password } = data;
     try {
-      const res = await auth.login({ email, password }, (user) => {
+       await auth.login({ email, password }, (user) => {
         if (user.role==="user"){
           navigate(from, {replace: true})
         }else if (user.role ==="partner"){
