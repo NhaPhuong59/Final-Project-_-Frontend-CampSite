@@ -12,7 +12,6 @@ import { Box, IconButton, Slider } from "@mui/material";
 function Search({ setQuery, queryParams}) {
   const startDate = new Date(queryParams.startDate || new Date());
   const endDate = new Date(queryParams.endDate || new Date());
-  const minPrice = queryParams.minPrice || 0;
   const maxPrice = queryParams.maxPrice || 100;
   const camp = queryParams.camp||""
   const selectionRange = {

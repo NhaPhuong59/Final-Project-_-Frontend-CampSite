@@ -1,6 +1,6 @@
 import { Box } from '@mui/system'
 import React from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import Logo from "../../images/logo5.png"
 import "./styles.scss"
 

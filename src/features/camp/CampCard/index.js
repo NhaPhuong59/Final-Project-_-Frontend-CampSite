@@ -4,10 +4,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { CardActionArea, Grid, Link } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
 
 function CampCard({camp, queryParams}) {
-    const navigate = useNavigate()
     const {title, images, _id, price} = camp
 
   return (
