@@ -102,9 +102,10 @@ export const getBookingSuccess = (campId) => async (dispatch) => {
 };
 
 export const userGetOwnTrip = ({user}) => async (dispatch) => {
+  const params = {email: user.email}
   dispatch(slice.actions.startLoading());
   try {
-    const res = await apiService.get("/booking/ownTrip", {email: user.email})
+    const res = await apiService.get("/booking/ownTrip", {params})
     dispatch(slice.actions.getOwnTripSuccess(res.data.data));
   } catch (error) {
     dispatch(slice.actions.hasError(error.message));

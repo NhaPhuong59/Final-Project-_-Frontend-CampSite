@@ -49,16 +49,15 @@ function UserLoginPage() {
   } = methods;
 
   const onSubmit = async (data) => {
-    const from = location.state?.from?.pathname || "/";
     let { email, password } = data;
     try {
-       await auth.login({ email, password }, (user) => {
-        if (user.role==="user"){
-          navigate(from, {replace: true})
-        }else if (user.role ==="partner"){
-          navigate(`/partner/${user._id}`,{ replace: true})
+      await auth.login({ email, password }, (user) => {
+        const from = location.state?.from?.pathname || `/user/${user._id}`;
+        if (user.role === "user") {
+          navigate(from, { replace: true });
+        } else if (user.role === "partner") {
+          navigate(`/partner/${user._id}`, { replace: true });
         }
-
       });
     } catch (error) {
       reset();
@@ -67,65 +66,75 @@ function UserLoginPage() {
   };
 
   return (
-    <Box sx={{background:"#ffb95e", height:"80vh"}} >
-    <Container maxWidth="xs" sx={{background:"#fff", padding:"5rem"}}>
-      <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-        <Stack spacing={3}>
-          {!!errors.responseError && (
-            <Alert severity="error">{errors.responseError.response.data.errors.message}</Alert>
-          )}
-          <Alert severity="info">
-            Don’t have an account?{" "}
-            <Link variant="subtitle2" component={RouterLink} to="/userRegister">
-              Get started
+    <Box sx={{ background: "#ffb95e", height: "80vh" }}>
+      <Container maxWidth="xs" sx={{ background: "#fff", padding: "5rem" }}>
+        <FormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing={3}>
+            {!!errors.responseError && (
+              <Alert severity="error">
+                {errors.responseError.response.data.errors.message}
+              </Alert>
+            )}
+            <Alert severity="info">
+              Don’t have an account?{" "}
+              <Link
+                variant="subtitle2"
+                component={RouterLink}
+                to="/userRegister"
+              >
+                Get started
+              </Link>
+            </Alert>
+
+            <FTextField name="email" label="Email address" />
+
+            <FTextField
+              name="password"
+              label="Password"
+              type={showPassword ? "text" : "password"}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      onClick={() => setShowPassword(!showPassword)}
+                      edge="end"
+                    >
+                      {showPassword ? (
+                        <VisibilityIcon />
+                      ) : (
+                        <VisibilityOffIcon />
+                      )}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+          </Stack>
+
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
+            sx={{ my: 2 }}
+          >
+            <FCheckbox name="remember" label="Remember me" />
+            <Link component={RouterLink} variant="subtitle2" to="/userReset">
+              Forgot password?
             </Link>
-          </Alert>
+          </Stack>
 
-          <FTextField name="email" label="Email address" />
-
-          <FTextField
-            name="password"
-            label="Password"
-            type={showPassword ? "text" : "password"}
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end">
-                  <IconButton
-                    onClick={() => setShowPassword(!showPassword)}
-                    edge="end"
-                  >
-                    {showPassword ? <VisibilityIcon /> : <VisibilityOffIcon />}
-                  </IconButton>
-                </InputAdornment>
-              ),
-            }}
-          />
-        </Stack>
-
-        <Stack
-          direction="row"
-          alignItems="center"
-          justifyContent="space-between"
-          sx={{ my: 2 }}
-        >
-          <FCheckbox name="remember" label="Remember me" />
-          <Link component={RouterLink} variant="subtitle2" to="/userReset">
-            Forgot password?
-          </Link>
-        </Stack>
-
-        <LoadingButton
-          fullWidth
-          size="large"
-          type="submit"
-          variant="contained"
-          loading={isSubmitting}
-          sx={{background:"#07A4B5"}}
-        >
-          Login
-        </LoadingButton>
-      </FormProvider>
-    </Container>
+          <LoadingButton
+            fullWidth
+            size="large"
+            type="submit"
+            variant="contained"
+            loading={isSubmitting}
+            sx={{ background: "#07A4B5" }}
+          >
+            Login
+          </LoadingButton>
+        </FormProvider>
+      </Container>
     </Box>
   );
 }

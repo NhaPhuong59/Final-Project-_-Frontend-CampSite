@@ -14,6 +14,9 @@ const Helper = {
       })
   },
   imageUrl(image) {
+    if (image.startsWith('https://nok-nok-campsite.herokuapp.com')){
+      return image
+    }
     if (image.startsWith('http://localhost:5000')) {
       image = image.slice('http://localhost:5000'.length)
     }
