@@ -56,6 +56,8 @@ const PartnerHeader = () => {
         <Toolbar disableGutters>
           <Typography
             variant="h6"
+            component="a"
+            href="/"
             noWrap
             sx={{
               mr: 2,

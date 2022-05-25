@@ -3,6 +3,7 @@ import './styles.scss';
 import ModeEditOutlineOutlinedIcon from '@mui/icons-material/ModeEditOutlineOutlined';
 import { Box, Divider, Modal} from '@mui/material';
 import ModalEditCamp from '../../features/camp/ModalEditCamp';
+import StarIcon from "@material-ui/icons/Star";
 
 
 function CampOwnCard({
@@ -12,6 +13,7 @@ function CampOwnCard({
     title,
     description,
     price,
+    rating
 }) {
     const [open, setOpen] = React.useState(false);
     const handleEdit = () => setOpen(true)
@@ -31,6 +33,12 @@ function CampOwnCard({
                 </div>
 
                 <div className="campOwn__infoBottom">
+                <div className="campOwn__stars">
+                        <StarIcon className="campOwn__star" />
+                        <p>
+                            <strong>{rating}</strong>
+                        </p>
+                    </div>
                     <div className='campOwn__price'>
                         <h2>${price}</h2>
                     </div>
