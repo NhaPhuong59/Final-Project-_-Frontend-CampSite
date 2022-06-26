@@ -17,31 +17,21 @@
         border-bottom: .1rem solid white
     }
 }
-.header_right{
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 20vw;
-    margin-right: 50px;
-
-
-}
-
-.header_right > p{
-    font-weight: 500;
-}
-
-.header_right_2{
-    display: flex;
-    align-items: center;
-    border: 1px solid lightgray;
-    border-radius: 999px;
-    padding: 2px 7px 2px 7px;
-
-}
 
 @media screen and (max-width: 770px) {
-    .logo {
-        height: 70px;
+    .app_bar{
+        margin-top: 15px;
+        .logo {
+            height: 70px;
+        }
+    }
+}
+
+@media screen and (max-width: 391px) {
+    .app_bar{
+        .logo_name {
+            font-size:2.5rem;
+        }
+    
     }
 }

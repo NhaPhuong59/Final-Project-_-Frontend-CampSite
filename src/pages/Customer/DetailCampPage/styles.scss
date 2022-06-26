@@ -154,8 +154,6 @@
     justify-content: center;
     align-items: center;
     height: 50rem;
-
-    
   }
   .section4:hover {
     .section4_image:active {
@@ -178,22 +176,20 @@
   }
 }
 
-
-
 @media screen and (max-width: 770px) {
-  .form_booking{
+  .form_booking {
     width: 36rem;
     top: 20%;
   }
-  .search_booking1{
+  .search_booking1 {
     display: none;
   }
-  .search_booking2{
-    width: 320px;
+  .search_booking2 {
+    width: 730px;
   }
   .banner__search {
-    width: 320px;
-    position: fixed;
+    width: 730px;
+    // position: fixed;
     display: flex;
     flex-direction: column;
     z-index: 100;
@@ -204,7 +200,7 @@
     font-weight: 900 !important;
     text-transform: inherit !important;
     color: #fff !important;
-    width: 320px;
+    width: 100%;
   }
   .detail_section {
     padding-right: 0px;
@@ -214,19 +210,19 @@
     height: 20rem;
     width: 26rem;
   }
-  .section2_description{
+  .section2_description {
     transform: translate(-9rem, 10rem);
     height: 20rem;
     width: 26rem;
     font-size: 1.1rem;
   }
-  .section2_title1{
+  .section2_title1 {
     transform: translate(-15rem, -13rem) rotate(-90deg);
-
   }
-  .section3_image, .section3_description{
+  .section3_image,
+  .section3_description {
     height: 25rem;
-      width: 25rem;
+    width: 25rem;
   }
   .section3:hover {
     .section3_image {
@@ -269,55 +265,54 @@
     border-top-left-radius: 50%;
     z-index: 5;
   }
-  .section4:hover{
-      .section4_image {
-        height: 12rem;
-        width: 20rem;
-        transition: all 1s;
-      }
-      .image1 {
-        transform: translate(-11rem, -7rem);
-        border-top-right-radius: 0%;
-        border-bottom-right-radius: 0%;
-        border-right: 7px solid #ffb95e;
-      }
-      .image2 {
-        transform: translate(11rem, -7rem);
-        border-bottom-left-radius: 0%;
-        border-bottom-right-radius: 0%;
-        border-bottom: 7px solid #ffb75e;
-      }
-      .image3 {
-        transform: translate(11rem, 7rem);
-        border-top-left-radius: 0%;
-        border-bottom-left-radius: 0%;
-        border-left: 7px solid #ffb75e;
-      }
-      .image4 {
-        transform: translate(-11rem, 7rem);
-        border-top-right-radius: 0%;
-        border-top-left-radius: 0%;
-        border-top: 7px solid #ffb95e;
-      }
-    
+  .section4:hover {
+    .section4_image {
+      height: 12rem;
+      width: 20rem;
+      transition: all 1s;
+    }
+    .image1 {
+      transform: translate(-11rem, -7rem);
+      border-top-right-radius: 0%;
+      border-bottom-right-radius: 0%;
+      border-right: 7px solid #ffb95e;
+    }
+    .image2 {
+      transform: translate(11rem, -7rem);
+      border-bottom-left-radius: 0%;
+      border-bottom-right-radius: 0%;
+      border-bottom: 7px solid #ffb75e;
+    }
+    .image3 {
+      transform: translate(11rem, 7rem);
+      border-top-left-radius: 0%;
+      border-bottom-left-radius: 0%;
+      border-left: 7px solid #ffb75e;
+    }
+    .image4 {
+      transform: translate(-11rem, 7rem);
+      border-top-right-radius: 0%;
+      border-top-left-radius: 0%;
+      border-top: 7px solid #ffb95e;
+    }
   }
 }
 
 @media screen and (min-width: 771px) {
-  .form_booking{
+  .form_booking {
     width: 50rem;
     top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
-  .search_booking1{
+  .search_booking1 {
     display: flex;
     justify-content: center;
   }
-  .search_booking2{
+  .search_booking2 {
     display: none;
   }
-  .banner__search{
+  .banner__search {
     display: none;
   }
   .detail_section {
@@ -328,19 +323,19 @@
     width: 35rem;
     transform: translate(14rem, -8rem);
   }
-  .section2_description{
+  .section2_description {
     height: 25rem;
-      width: 35rem;
-      transform: translate(-13rem, 8rem);
-      font-size: 1.1rem;
-
+    width: 35rem;
+    transform: translate(-13rem, 8rem);
+    font-size: 1.1rem;
   }
-  .section2_title1{
+  .section2_title1 {
     transform: translate(-18rem, -13rem);
   }
-  .section3_image, .section3_description{
+  .section3_image,
+  .section3_description {
     height: 31.5rem;
-      width: 31.5rem;
+    width: 31.5rem;
   }
   .section3:hover {
     .section3_image {
@@ -383,7 +378,7 @@
     border-top-left-radius: 50%;
     z-index: 5;
   }
-  .section4:hover{
+  .section4:hover {
     .section4_image {
       height: 22rem;
       width: 32rem;
@@ -416,66 +411,72 @@
   }
 }
 
-
 @media screen and (max-width: 391px) {
-  .form_booking{
-    width: 12rem;
-    top: 20%;
-  }
-  .search_booking1{
-    display: none;
-  }
-  .search_booking2{
-    width: 320px;
-  }
-  .banner__search {
-    width: 320px;
-    position: fixed;
-    display: flex;
-    flex-direction: column;
-    z-index: 100;
-    align-items: center;
-  }
-  .banner__searchButton {
-    background-color: #ffb95e !important;
-    font-weight: 900 !important;
-    text-transform: inherit !important;
-    color: #fff !important;
-    width: 320px;
-  }
-  .detail_section {
-    padding-right: 0px;
-  }
-  .section2_image {
-    transform: translate(0rem, -8rem);
-    height: 15rem;
-    width: 20rem;
-  }
-  .section2_description{
-    transform: translate(0rem, 10rem);
-    height: 15rem;
-    width: 20rem;
-    font-size: 0.5rem;
-  }
-  .section2_title1, .section1_title2{
-    display: none;
+  .detailpage-container {
+    .section1 {
+      .section1_title {
+        width: 286px;
+        padding: 0 2.5rem;
+        h4 {
+          font-size: 35px;
+        }
+      }
+    }
 
-  }
-  .section3_image, .section3_description{
-    height: 20rem;
+    .form_booking {
+      width: 12rem;
+      top: 20%;
+    }
+    .search_booking1 {
+      display: none;
+    }
+    .search_booking2 {
+      width: 320px;
+    }
+    .banner__search {
+      width: 320px;
+    }
+    .banner__searchButton {
+      background-color: #ffb95e !important;
+      font-weight: 900 !important;
+      text-transform: inherit !important;
+      color: #fff !important;
+      width: 320px;
+    }
+    .detail_section {
+      padding-right: 0px;
+    }
+    .section2_image {
+      transform: translate(0rem, -8rem);
+      height: 15rem;
       width: 20rem;
-  }
-  .section3:hover {
-    .section3_image {
-      transform: translateY(-40%);
-      transition: all 1s ease;
     }
+    .section2_description {
+      transform: translate(0rem, 10rem);
+      height: 15rem;
+      width: 20rem;
+      font-size: 0.5rem;
+    }
+    .section2_title1,
+    .section2_title2 {
+      display: none;
+    }
+    .section3_image,
     .section3_description {
-      transform: translateY(40%);
-      transition: all 1s ease;
+      height: 20rem;
+      width: 20rem;
     }
-  }
-  .section4:hover{
+    .section3:hover {
+      .section3_image {
+        transform: translateY(-40%);
+        transition: all 1s ease;
+      }
+      .section3_description {
+        transform: translateY(40%);
+        transition: all 1s ease;
+      }
+    }
+    .section4:hover {
       .section4_image {
         height: 10rem;
         width: 18rem;
@@ -487,7 +488,6 @@
         border-bottom-right-radius: 0%;
         border-right: none;
         border-bottom: 7px solid #ffb75e;
-
       }
       .image2 {
         transform: translate(0rem, -7rem);
@@ -501,47 +501,45 @@
         border-bottom-left-radius: 0%;
         border-left: none;
         border-bottom: 7px solid #ffb75e;
-
       }
       .image4 {
         transform: translate(0rem, 15rem);
         border-top-right-radius: 0%;
         border-top-left-radius: 0%;
-        border-top:none;
+        border-top: none;
         border-bottom: 7px solid #ffb75e;
-
       }
-    
-  }
-  .section4_image {
-    background-size: cover;
-    background-position: center;
-    height: 10rem;
-    width: 10rem;
-    position: absolute;
-  }
-  .image1 {
-    transform: translate(-4rem, -4rem);
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    z-index: 20;
-  }
-  .image2 {
-    transform: translate(4rem, -4rem);
-    border-bottom-left-radius: 50%;
-    border-bottom-right-radius: 50%;
-    z-index: 15;
-  }
-  .image3 {
-    transform: translate(4rem, 4rem);
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    z-index: 10;
-  }
-  .image4 {
-    transform: translate(-4rem, 4rem);
-    border-top-right-radius: 50%;
-    border-top-left-radius: 50%;
-    z-index: 5;
+    }
+    .section4_image {
+      background-size: cover;
+      background-position: center;
+      height: 10rem;
+      width: 10rem;
+      position: absolute;
+    }
+    .image1 {
+      transform: translate(-4rem, -4rem);
+      border-top-right-radius: 50%;
+      border-bottom-right-radius: 50%;
+      z-index: 20;
+    }
+    .image2 {
+      transform: translate(4rem, -4rem);
+      border-bottom-left-radius: 50%;
+      border-bottom-right-radius: 50%;
+      z-index: 15;
+    }
+    .image3 {
+      transform: translate(4rem, 4rem);
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+      z-index: 10;
+    }
+    .image4 {
+      transform: translate(-4rem, 4rem);
+      border-top-right-radius: 50%;
+      border-top-left-radius: 50%;
+      z-index: 5;
+    }
   }
 }
