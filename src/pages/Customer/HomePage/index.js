@@ -69,10 +69,10 @@ function HomePage() {
               <Search setQuery={setQuery} queryParams={queryParams} />
             </div>
             <div className="search_2">
-              <div className="banner__search">
+              <div className="banner__search_homepage">
                 <Button
                   onClick={() => setShowSearch(!showSearch)}
-                  className="banner__searchButton"
+                  className="banner__searchButton_homepage"
                   variant="outlined"
                 >
                   {showSearch ? "Hide" : "Search"}

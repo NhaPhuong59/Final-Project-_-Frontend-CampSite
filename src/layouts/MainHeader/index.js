@@ -76,7 +76,7 @@ const MainHeader = () => {
                 alignItems: "center",
               }}
             >
-              <img src={Logo} alt="logo" height={60} className="logo" />
+              <img src={Logo} alt="logo" height={80} className="logo" />
               <div className="logo_name">noknok</div>
             </Box>
           </Typography>
@@ -104,7 +104,7 @@ const MainHeader = () => {
                 alignItems: "center",
               }}
             >
-              <img src={Logo} alt="logo" height={80}/>
+              <img src={Logo} alt="logo" height={70}/>
               <div className="logo_name">noknok</div>
             </Box>
           </Typography>
